@@ -42,6 +42,6 @@
 </template>
 
 <script lang="ts" setup>
-import { Feed } from "@/types/feeds";
-const feeds = useState<Feed[]>("feeds", () => []);
+// import { Feed } from "@/types/feeds";
+// const feeds = useState<Feed[]>("feeds", () => []);
 </script>

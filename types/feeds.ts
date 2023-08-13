@@ -85,7 +85,6 @@ export interface YouTubeSearchItem {
   };
 }
 
-// feed example  { type: { id: string; label: string; icon: string; }; meta: {}; }
 export interface Feed {
   type: {
     id: string;
