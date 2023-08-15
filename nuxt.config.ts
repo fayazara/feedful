@@ -2,7 +2,7 @@
 import icons from "./constants/icons.json";
 import splashScreens from "./constants/apple-pwa-links.json";
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: [
     "@nuxthq/ui",
     "nuxt-icon",

@@ -94,11 +94,24 @@ export interface YouTubeSearchItem {
   };
 }
 
+interface GithubFeedMeta {
+  language: string;
+  since: string;
+}
+
+interface YoutubeFeedMeta {
+  channel: string;
+}
+
+interface RssFeedMeta {
+  feedUrl: string;
+}
+
 export interface Feed {
-  type: {
-    id: string;
-    label: string;
-    icon?: string;
-  };
-  meta?: any;
+  id: string;
+  label: string;
+  type: "github" | "youtube" | "rss" | "producthunt" | "hackernews" | "dribbble";
+  icon?: string;
+  url: string;
+  meta?: GithubFeedMeta | YoutubeFeedMeta | RssFeedMeta;
 }

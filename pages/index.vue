@@ -1,7 +1,7 @@
 <template>
   <main class="h-screen flex flex-col">
     <Navbar />
-    <div class="flex-grow flex overflow-x-auto snap-x snap-mandatory">
+    <div class="flex-grow flex overflow-x-auto divide-x snap-x snap-mandatory">
       <Feed
         name="Producthunt"
         icon="logos:producthunt"
@@ -41,4 +41,5 @@
   </main>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+</script>
