@@ -4,15 +4,25 @@ import { Github } from "@/types/feeds";
 import { kFormatter } from "@/utils";
 
 import fixtures from "./githubReposFixtures";
-const GITHUB_TRENDING_URL = "https://github.com/trending/javascript";
 
-export default async (): Promise<Github[]> => {
+const GITHUB_TRENDING_BASE_URL = "https://github.com/trending";
+
+export default async (
+  lang: string = "all",
+  since: string = "daily"
+): Promise<Github[]> => {
   try {
+    if (lang === "all") {
+      lang = "";
+    }
+
+    const url = `${GITHUB_TRENDING_BASE_URL}/${lang}?since=${since}`;
+
     if (process.env.NODE_ENV === "development") {
       await sleep(1000);
       return fixtures;
     } else {
-      const response = await fetch(GITHUB_TRENDING_URL);
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`HTTP error: ${response.status}`);
       }

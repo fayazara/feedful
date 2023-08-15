@@ -37,8 +37,8 @@ export interface Github {
 export interface Dribbble {
   image: string;
   title: string;
-  likes: number;
-  views: number;
+  likes: string;
+  views: string;
   author: string;
   authorAvatar: string;
   url: string;
@@ -60,6 +60,15 @@ export interface YouTubeSearchResponse {
     resultsPerPage: number;
   };
   items: YouTubeSearchItem[];
+}
+
+export interface YoutubePost {
+  id?: string;
+  enclosures: any[];
+  title: string;
+  link: string;
+  thumbnail: string;
+  description: string;
 }
 
 export interface YouTubeSearchItem {

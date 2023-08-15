@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <FeedLoading v-if="pending" />
+  <div v-else>
     <div
       v-for="(post, id) in posts"
       :key="id"
@@ -9,7 +10,7 @@
         <img
           :src="post.image"
           :alt="post.title"
-          class="aspect-[4/3] border object-cover rounded-xl group-hover:rounded transition-all"
+          class="aspect-[4/3] w-full h-auto border object-cover rounded-xl"
         />
         <p class="font-medium text-sm text-gray-900 break-words mt-3">
           {{ post.title }}
@@ -32,11 +33,12 @@
 </template>
 
 <script lang="ts" setup>
-import getDribbblePosts from "@/lib/getDribbblePosts";
 const {
   data: posts,
   pending,
   error,
   refresh,
-} = await useAsyncData("dribbble", () => getDribbblePosts());
+} = await useFetch("/api/feed/dribbble", {
+  server: false,
+});
 </script>

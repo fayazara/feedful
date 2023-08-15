@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <FeedLoading v-if="pending" />
+  <div v-else>
     <div
       v-for="(post, id) in posts"
       :key="id"
@@ -9,7 +10,7 @@
         <img
           :src="post.enclosures[0]"
           :alt="post.title"
-          class="aspect-[16/9] border object-cover rounded-xl group-hover:rounded transition-all"
+          class="aspect-[16/9] border object-cover rounded-xl"
         />
         <p class="font-medium text-sm text-gray-900 break-words mt-3">
           {{ post.title }}
@@ -25,7 +26,6 @@
 </template>
 
 <script lang="ts" setup>
-import getYoutubeFeed from "@/lib/getYoutubeFeed";
 const props = defineProps<{
   channelId: string;
 }>();
@@ -34,5 +34,10 @@ const {
   pending,
   error,
   refresh,
-} = await useAsyncData("youtube", () => getYoutubeFeed(props.channelId));
+} = await useFetch("/api/feed/youtube", {
+  params: {
+    channel: props.channelId,
+  },
+  server: false,
+});
 </script>

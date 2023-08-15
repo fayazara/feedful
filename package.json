@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "fast-xml-parser": "^4.2.7"
+    "fast-xml-parser": "^4.2.7",
+    "xml2js": "^0.6.2"
   }
 }

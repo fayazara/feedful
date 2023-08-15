@@ -179,6 +179,5 @@ async function submit() {
     meta: meta.value,
   };
   console.log(feed);
-  feeds.value.push(feed);
 }
 </script>

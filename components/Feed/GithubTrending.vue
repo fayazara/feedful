@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <FeedLoading v-if="pending" />
+  <div v-else>
     <div v-for="(repo, id) in repos" :key="id">
       <a
         :href="repo.url"
         target="_blank"
-        class="flex px-3 py-4 hover:bg-gray-100"
+        class="flex px-3 gap-2 py-4 hover:bg-gray-100"
       >
         <div class="flex-1 min-w-0">
           <p class="font-medium text-sm text-gray-900 break-words">
@@ -25,12 +26,21 @@
   </div>
 </template>
 <script lang="ts" setup>
-import getGithubTrendingPosts from "@/lib/getGithubTrendingRepos";
-import { Github } from "@/types/feeds";
+const props = defineProps<{
+  lang: string;
+  since: string;
+}>();
+
 const {
   data: repos,
   pending,
   error,
   refresh,
-} = await useAsyncData("github", () => getGithubTrendingPosts());
+} = await useFetch("/api/feed/github-trending", {
+  params: {
+    lang: props.lang,
+    since: props.since,
+  },
+  server: false,
+});
 </script>

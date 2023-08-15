@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <FeedLoading v-if="pending" />
+  <div v-else>
     <div v-for="post in posts" :key="post.id">
       <a
         :href="post.url"
@@ -29,12 +30,12 @@
 </template>
 
 <script lang="ts" setup>
-import getHackernewsPosts from "@/lib/getHackernewsPosts";
-import { Hackernews } from "@/types/Feeds";
 const {
   data: posts,
   pending,
   error,
   refresh,
-} = await useAsyncData("Hackernews", () => getHackernewsPosts());
+} = await useFetch("/api/feed/hackernews", {
+  server: false,
+});
 </script>

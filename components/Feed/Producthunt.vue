@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <FeedLoading v-if="pending" />
+  <div v-else>
     <div v-for="post in posts" :key="post.id">
       <a
         :href="post.url"
@@ -32,12 +33,12 @@
 </template>
 
 <script lang="ts" setup>
-import getProducthuntPosts from "@/lib/getProducthuntPosts";
-import { Producthunt } from "@/types/Feeds";
 const {
   data: posts,
   pending,
   error,
   refresh,
-} = await useAsyncData("producthunt", () => getProducthuntPosts());
+} = await useFetch("/api/feed/producthunt", {
+  server: false,
+});
 </script>

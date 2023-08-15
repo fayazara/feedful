@@ -17,11 +17,11 @@
         <FeedHackernews />
       </Feed>
       <Feed
-        name="Github Trending (Javascript)"
+        name="Github Trending (Python)"
         icon="logos:github-icon"
         url="https://github.com/trending/javascript"
       >
-        <FeedGithubTrending />
+        <FeedGithubTrending lang="python" since="daily" />
       </Feed>
       <Feed
         name="MKBHD"
@@ -41,7 +41,4 @@
   </main>
 </template>
 
-<script lang="ts" setup>
-// import { Feed } from "@/types/feeds";
-// const feeds = useState<Feed[]>("feeds", () => []);
-</script>
+<script lang="ts" setup></script>
