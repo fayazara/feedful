@@ -1,6 +1,7 @@
 <template>
   <section
     class="h-full w-full max-w-md border-r flex flex-col flex-shrink-0 snap-center"
+    style="-webkit-tap-highlight-color: transparent"
   >
     <header class="py-2 px-4 bg-white flex items-center space-x-3 border-b">
       <Icon v-if="icon" :name="icon" class="h-5 w-5" />
