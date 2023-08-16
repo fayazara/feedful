@@ -5,7 +5,7 @@
   >
     <header class="py-2 px-4 bg-white flex items-center space-x-3 border-b">
       <Icon v-if="icon" :name="icon" class="h-5 w-5" />
-      <h2 class="font-medium">
+      <h2 class="">
         <a v-if="url" :href="url" target="_blank"> {{ name }} </a>
         <span v-else>{{ name }}</span>
       </h2>

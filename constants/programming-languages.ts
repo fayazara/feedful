@@ -1,194 +1,186 @@
 export default [
-    {
-        "lang": "",
-        "label": "All"
-    },
-    {
-        "lang": "assembly",
-        "label": "Assembly"
-    },
-    {
-        "lang": "astro",
-        "label": "Astro"
-    },
-    {
-        "lang": "basic",
-        "label": "BASIC"
-    },
-    {
-        "lang": "c",
-        "label": "C"
-    },
-    {
-        "lang": "c%23",
-        "label": "C#"
-    },
-    {
-        "lang": "c++",
-        "label": "C++"
-    },
-    {
-        "lang": "clojure",
-        "label": "Clojure"
-    },
-    {
-        "lang": "css",
-        "label": "CSS"
-    },
-    {
-        "lang": "dart",
-        "label": "Dart"
-    },
-    {
-        "lang": "elixir",
-        "label": "Elixir"
-    },
-    {
-        "lang": "go",
-        "label": "Go"
-    },
-    {
-        "lang": "haskell",
-        "label": "Haskell"
-    },
-    {
-        "lang": "html",
-        "label": "HTML"
-    },
-    {
-        "lang": "java",
-        "label": "Java"
-    },
-    {
-        "lang": "java-properties",
-        "label": "Java Properties"
-    },
-    {
-        "lang": "java-server-pages",
-        "label": "Java Server Pages"
-    },
-    {
-        "lang": "javascript",
-        "label": "JavaScript"
-    },
-    {
-        "lang": "json",
-        "label": "JSON"
-    },
-    {
-        "lang": "julia",
-        "label": "Julia"
-    },
-    {
-        "lang": "jupyter-notebook",
-        "label": "Jupyter Notebook"
-    },
-    {
-        "lang": "kotlin",
-        "label": "Kotlin"
-    },
-    {
-        "lang": "less",
-        "label": "Less"
-    },
-    {
-        "lang": "lua",
-        "label": "Lua"
-    },
-    {
-        "lang": "markdown",
-        "label": "Markdown"
-    },
-    {
-        "lang": "objective-c",
-        "label": "Objective-C"
-    },
-    {
-        "lang": "ocaml",
-        "label": "OCaml"
-    },
-    {
-        "lang": "pug",
-        "label": "Pug"
-    },
-    {
-        "lang": "puppet",
-        "label": "Puppet"
-    },
-    {
-        "lang": "python",
-        "label": "Python"
-    },
-    {
-        "lang": "r",
-        "label": "R"
-    },
-    {
-        "lang": "ruby",
-        "label": "Ruby"
-    },
-    {
-        "lang": "rust",
-        "label": "Rust"
-    },
-    {
-        "lang": "sass",
-        "label": "Sass"
-    },
-    {
-        "lang": "scala",
-        "label": "Scala"
-    },
-    {
-        "lang": "shell",
-        "label": "Shell"
-    },
-    {
-        "lang": "sql",
-        "label": "SQL"
-    },
-    {
-        "lang": "sqlpl",
-        "label": "SQLPL"
-    },
-    {
-        "lang": "stylus",
-        "label": "Stylus"
-    },
-    {
-        "lang": "svelte",
-        "label": "Svelte"
-    },
-    {
-        "lang": "svg",
-        "label": "SVG"
-    },
-    {
-        "lang": "swift",
-        "label": "Swift"
-    },
-    {
-        "lang": "typescript",
-        "label": "TypeScript"
-    },
-    {
-        "lang": "v",
-        "label": "V"
-    },
-    {
-        "lang": "vue",
-        "label": "Vue"
-    },
-    {
-        "lang": "webassembly",
-        "label": "WebAssembly"
-    },
-    {
-        "lang": "yaml",
-        "label": "YAML"
-    },
-    {
-        "lang": "zig",
-        "label": "Zig"
-    },
-]
+  {
+    language: "all",
+    label: "All",
+  },
+  {
+    language: "assembly",
+    label: "Assembly",
+  },
+  {
+    language: "astro",
+    label: "Astro",
+  },
+  {
+    language: "basic",
+    label: "BASIC",
+  },
+  {
+    language: "c",
+    label: "C",
+  },
+  {
+    language: "c%23",
+    label: "C#",
+  },
+  {
+    language: "c++",
+    label: "C++",
+  },
+  {
+    language: "clojure",
+    label: "Clojure",
+  },
+  {
+    language: "css",
+    label: "CSS",
+  },
+  {
+    language: "dart",
+    label: "Dart",
+  },
+  {
+    language: "elixir",
+    label: "Elixir",
+  },
+  {
+    language: "go",
+    label: "Go",
+  },
+  {
+    language: "haskell",
+    label: "Haskell",
+  },
+  {
+    language: "html",
+    label: "HTML",
+  },
+  {
+    language: "java",
+    label: "Java",
+  },
+  {
+    language: "javascript",
+    label: "JavaScript",
+  },
+  {
+    language: "json",
+    label: "JSON",
+  },
+  {
+    language: "julia",
+    label: "Julia",
+  },
+  {
+    language: "jupyter-notebook",
+    label: "Jupyter Notebook",
+  },
+  {
+    language: "kotlin",
+    label: "Kotlin",
+  },
+  {
+    language: "less",
+    label: "Less",
+  },
+  {
+    language: "lua",
+    label: "Lua",
+  },
+  {
+    language: "markdown",
+    label: "Markdown",
+  },
+  {
+    language: "objective-c",
+    label: "Objective-C",
+  },
+  {
+    language: "ocaml",
+    label: "OCaml",
+  },
+  {
+    language: "pug",
+    label: "Pug",
+  },
+  {
+    language: "puppet",
+    label: "Puppet",
+  },
+  {
+    language: "python",
+    label: "Python",
+  },
+  {
+    language: "r",
+    label: "R",
+  },
+  {
+    language: "ruby",
+    label: "Ruby",
+  },
+  {
+    language: "rust",
+    label: "Rust",
+  },
+  {
+    language: "sass",
+    label: "Sass",
+  },
+  {
+    language: "scala",
+    label: "Scala",
+  },
+  {
+    language: "shell",
+    label: "Shell",
+  },
+  {
+    language: "sql",
+    label: "SQL",
+  },
+  {
+    language: "sqlpl",
+    label: "SQLPL",
+  },
+  {
+    language: "stylus",
+    label: "Stylus",
+  },
+  {
+    language: "svelte",
+    label: "Svelte",
+  },
+  {
+    language: "svg",
+    label: "SVG",
+  },
+  {
+    language: "swift",
+    label: "Swift",
+  },
+  {
+    language: "typescript",
+    label: "TypeScript",
+  },
+  {
+    language: "v",
+    label: "V",
+  },
+  {
+    language: "vue",
+    label: "Vue",
+  },
+  {
+    language: "webassembly",
+    label: "WebAssembly",
+  },
+  {
+    language: "yaml",
+    label: "YAML",
+  },
+  {
+    language: "zig",
+    label: "Zig",
+  },
+];
