@@ -14,6 +14,7 @@
           @click="newFeedModal = true"
         />
       </UTooltip>
+      <NuxtLink to="/login"> Login </NuxtLink>
       <UDropdown
         :items="items"
         :ui="{

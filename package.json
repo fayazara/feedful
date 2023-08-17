@@ -22,8 +22,10 @@
     "nuxt-icon": "^0.5.0"
   },
   "dependencies": {
+    "@vueuse/router": "^10.3.0",
     "cheerio": "^1.0.0-rc.12",
     "fast-xml-parser": "^4.2.7",
+    "vue-router": "4",
     "xml2js": "^0.6.2"
   }
 }

@@ -2,41 +2,41 @@
   <main class="h-screen flex flex-col">
     <Navbar />
     <div class="flex-grow flex overflow-x-auto snap-x snap-mandatory">
-      <FeedContainer
+      <FeedColumn
         name="Producthunt"
         icon="logos:producthunt"
         url="https://producthunt.com"
       >
         <FeedProducthunt />
-      </FeedContainer>
-      <FeedContainer
+      </FeedColumn>
+      <FeedColumn
         name="Hackernews"
         icon="logos:ycombinator"
         url="https://news.ycombinator.com/"
       >
         <FeedHackernews />
-      </FeedContainer>
-      <FeedContainer
+      </FeedColumn>
+      <FeedColumn
         name="Github Trending (Python)"
         icon="logos:github-icon"
         url="https://github.com/trending/javascript"
       >
         <FeedGithubTrending lang="python" since="daily" />
-      </FeedContainer>
-      <FeedContainer
+      </FeedColumn>
+      <FeedColumn
         name="MKBHD"
         icon="logos:youtube-icon"
         url="https://youtube.com/@mkbhd"
       >
         <FeedYoutube channel-id="UCBJycsmduvYEL83R_U4JriQ" />
-      </FeedContainer>
-      <FeedContainer
+      </FeedColumn>
+      <FeedColumn
         name="Dribbble"
         icon="logos:dribbble-icon"
         url="https://dribbble.com/"
       >
         <FeedDribbble />
-      </FeedContainer>
+      </FeedColumn>
     </div>
   </main>
 </template>

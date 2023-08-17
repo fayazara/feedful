@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from "tailwindcss";
 module.exports = {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -11,9 +11,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        peach: "#fbfaf8"
-      }
+        peach: "#fbfaf8",
+      },
     },
   },
   plugins: [],
-}
+} satisfies Config;
