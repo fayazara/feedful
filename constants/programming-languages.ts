@@ -1,6 +1,6 @@
 export default [
   {
-    language: "all",
+    language: "",
     label: "All",
   },
   {
