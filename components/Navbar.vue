@@ -3,13 +3,13 @@
     <img src="/logo-full.svg" alt="Logo" class="h-10 w-auto" />
     <p class="text-sm text-gray-600">{{ date }}</p>
     <div class="flex-grow"></div>
-    <div class="flex items-center gap-x-2">
+    <div class="flex items-center">
       <UTooltip text="Add Feed">
         <UButton
           icon="i-heroicons-plus-circle"
           size="sm"
           :square="true"
-          variant="soft"
+          variant="ghost"
           color="gray"
           @click="newFeedModal = true"
         />
@@ -22,10 +22,12 @@
         }"
         :popper="{ placement: 'bottom-start' }"
       >
-        <UAvatar
-          src="https://github.com/fayazara.png"
-          class="ring-2 ring-gray-200"
-          size="xs"
+        <UButton
+          icon="i-heroicons-ellipsis-vertical"
+          size="sm"
+          :square="true"
+          variant="ghost"
+          color="gray"
         />
 
         <template #account="{ item }">
@@ -47,7 +49,7 @@
       </UDropdown>
     </div>
     <UModal v-model="newFeedModal">
-      <FeedNew @close="newFeedModal = false" />
+      <NewFeedForm @close="newFeedModal = false" />
     </UModal>
   </nav>
 </template>

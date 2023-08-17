@@ -46,7 +46,7 @@ export interface Dribbble {
 
 export interface YoutubeChannel {
   id: string;
-  label: string;
+  name: string;
   thumbnail: string;
 }
 
@@ -100,7 +100,7 @@ export interface GithubFeedMeta {
 }
 
 export interface YoutubeFeedMeta {
-  channel: string;
+  channelId: string;
 }
 
 export interface RssFeedMeta {

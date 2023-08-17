@@ -1,6 +1,6 @@
-export default [
+export const programmingLanguages = [
   {
-    language: "",
+    language: "all",
     label: "All",
   },
   {
@@ -183,4 +183,10 @@ export default [
     language: "zig",
     label: "Zig",
   },
+];
+
+export const githubFrequencyOptions = [
+  { label: "Daily", value: "daily" },
+  { label: "Weekly", value: "weekly" },
+  { label: "Monthly", value: "monthly" },
 ];

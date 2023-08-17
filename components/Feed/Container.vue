@@ -1,6 +1,6 @@
 <template>
   <section
-    class="h-full w-full max-w-md flex flex-col flex-shrink-0 snap-center"
+    class="h-full w-full max-w-md flex border-r flex-col flex-shrink-0 snap-center"
     style="-webkit-tap-highlight-color: transparent"
   >
     <header class="py-2 px-4 bg-white flex items-center space-x-3 border-b">

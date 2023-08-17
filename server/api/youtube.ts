@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
   const formattedData: YoutubeChannel[] = data.items.map(
     (item: YouTubeSearchItem) => ({
       id: item.id.channelId,
-      label: item.snippet.title,
+      name: item.snippet.title,
       thumbnail: item.snippet.thumbnails.default.url,
     })
   );
