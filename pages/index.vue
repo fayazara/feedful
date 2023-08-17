@@ -41,4 +41,15 @@
   </main>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { Database } from "@/types/database.types";
+const client = useSupabaseClient<Database>();
+const user = useSupabaseUser();
+const { data: feeds } = await useAsyncData("feeds", async () => {
+  const { data } = await client
+    .from("feeds")
+    .select("*")
+    .eq("user_id", user.value.id);
+  return data;
+});
+</script>

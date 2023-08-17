@@ -14,14 +14,13 @@
           <p class="mt-2 text-sm leading-6 text-gray-500">
             Already a member?
             <NuxtLink
-              to="/login"
+              to="/auth/login"
               class="font-semibold text-indigo-600 hover:text-indigo-500"
             >
               login here
             </NuxtLink>
           </p>
         </div>
-
         <div class="mt-10">
           <div>
             <UForm
@@ -54,7 +53,14 @@
                   type="password"
                 />
               </UFormGroup>
-              <UButton type="submit" block size="lg"> Register </UButton>
+              <UButton
+                type="submit"
+                block
+                size="lg"
+                :label="loading ? 'Registering' : 'Register'"
+                :loading="loading"
+                :disabled="loading"
+              />
             </UForm>
           </div>
         </div>
@@ -67,15 +73,25 @@
 </template>
 
 <script lang="ts" setup>
+import type { FormError } from "@nuxthq/ui/dist/runtime/types";
+const toast = useToast();
+const supabase = useSupabaseClient();
 const loading = ref(false);
-const state = ref({
+
+interface State {
+  email: string | undefined;
+  password: string | undefined;
+  confirmPassword: string | undefined;
+}
+
+const state = ref<State>({
   email: undefined,
   password: undefined,
   confirmPassword: undefined,
 });
 
-const validate = (state: any) => {
-  const errors = [];
+const validate = (state: any): FormError[] => {
+  const errors: { path: string; message: string }[] = [];
   if (!state.email) errors.push({ path: "email", message: "Required" });
   if (!state.password) errors.push({ path: "password", message: "Required" });
   if (!state.confirmPassword) {
@@ -87,19 +103,25 @@ const validate = (state: any) => {
   return errors;
 };
 
-const form = ref();
+const form = ref<any>(null);
 
 async function submit() {
   loading.value = true;
   await form.value!.validate();
-  try {
-    console.log(state.value);
-  } catch (error) {
+  const { error } = await supabase.auth.signUp({
+    email: state.value.email!,
+    password: state.value.password!,
+  });
+  if (error) {
     console.error(error);
-  } finally {
-    loading.value = false;
+    toast.add({ title: error.message, icon: "i-heroicons-x-circle" });
+    return;
   }
+  toast.add({
+    title: "Account created",
+    description: "Check your email for the confirmation link",
+    icon: "i-heroicons-check-badge",
+  });
+  navigateTo("/auth/login");
 }
 </script>
-
-<style></style>

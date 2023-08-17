@@ -157,6 +157,7 @@
 </template>
 
 <script lang="ts" setup>
+import { Database } from "@/types/database.types";
 import {
   Feed,
   GithubFeedMeta,
@@ -170,6 +171,9 @@ import {
   githubFrequencyOptions,
 } from "@/constants/githubMeta";
 import { refDebounced } from "@vueuse/core";
+
+const client = useSupabaseClient<Database>();
+const user = useSupabaseUser();
 
 const selectedFeed = ref<Feed>({
   name: "",
@@ -343,9 +347,20 @@ function clearYoutubeChannel() {
   selectedFeed.value.url = "";
 }
 
-function submit() {
+async function submit() {
   if (!validateForm()) return;
   const feed = transformData(JSON.parse(JSON.stringify(selectedFeed.value)));
-  console.log("submitting", feed);
+  const { data, error } = await client
+    .from("feeds")
+    .insert({ ...feed, user_id: user.value.id })
+    .select("*")
+    .single();
+  if (error) {
+    console.log(error);
+    return;
+  }
+  if (data) {
+    console.log(data);
+  }
 }
 </script>

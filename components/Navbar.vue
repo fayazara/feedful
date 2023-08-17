@@ -14,8 +14,8 @@
           @click="newFeedModal = true"
         />
       </UTooltip>
-      <NuxtLink to="/login"> Login </NuxtLink>
       <UDropdown
+        v-if="user"
         :items="items"
         :ui="{
           item: { disabled: 'cursor-text select-text' },
@@ -48,6 +48,7 @@
           />
         </template>
       </UDropdown>
+      <NuxtLink v-else to="/auth/login"> Login </NuxtLink>
     </div>
     <UModal v-model="newFeedModal">
       <NewFeedForm @close="newFeedModal = false" />
@@ -56,6 +57,9 @@
 </template>
 
 <script lang="ts" setup>
+const supabase = useSupabaseClient();
+const user = useSupabaseUser();
+
 const newFeedModal = ref(false);
 
 const date = computed(() => {
@@ -67,41 +71,50 @@ const date = computed(() => {
   });
 });
 
-const items = [
-  [
-    {
-      label: "fayaz@feedful.app",
-      slot: "account",
-      disabled: true,
-    },
-  ],
-  [
-    {
-      label: "Settings",
-      icon: "i-heroicons-cog-8-tooth",
-    },
-  ],
-  [
-    {
-      label: "Documentation",
-      icon: "i-heroicons-book-open",
-    },
-    {
-      label: "Changelog",
-      icon: "i-heroicons-megaphone",
-    },
-    {
-      label: "Status",
-      icon: "i-heroicons-signal",
-    },
-  ],
-  [
-    {
-      label: "Sign out",
-      icon: "i-heroicons-arrow-left-on-rectangle",
-    },
-  ],
-];
-</script>
+const signOut = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) console.log(error);
+};
 
-<style></style>
+const items = computed(() => {
+  const userLabel = user.value?.email ?? "Unknown User";
+  return [
+    [
+      {
+        label: userLabel,
+        slot: "account",
+        disabled: true,
+      },
+    ],
+    [
+      {
+        label: "Settings",
+        icon: "i-heroicons-cog-8-tooth",
+      },
+    ],
+    [
+      {
+        label: "Documentation",
+        icon: "i-heroicons-book-open",
+      },
+      {
+        label: "Changelog",
+        icon: "i-heroicons-megaphone",
+      },
+      {
+        label: "Status",
+        icon: "i-heroicons-signal",
+      },
+    ],
+    [
+      {
+        label: "Sign out",
+        icon: "i-heroicons-arrow-left-on-rectangle",
+        click: () => {
+          signOut();
+        },
+      },
+    ],
+  ];
+});
+</script>
