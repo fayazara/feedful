@@ -16,15 +16,7 @@
     <ul class="divide-y divide-gray-100 h-[50vh] sm:h-[420px] overflow-auto">
       <li v-for="feed in feedTypes" :key="feed.type">
         <button
-          @click="
-            selectedFeed.type = feed.type as
-              | 'producthunt'
-              | 'github'
-              | 'youtube'
-              | 'rss'
-              | 'hackernews'
-              | 'dribbble'
-          "
+          @click="selectedFeed.type = feed.type"
           class="flex items-center gap-x-2 text-left w-full hover:bg-gray-50 py-3 px-4 relative"
           :class="[
             { 'opacity-50 cursor-auto': feed.disabled },
@@ -122,8 +114,7 @@ const githubFrequencyOptions = [
   { label: "Monthly", value: "monthly" },
 ];
 const selectedFeed = ref<Feed>({
-  id: "",
-  label: "",
+  name: "",
   type: "producthunt",
   url: "",
 });

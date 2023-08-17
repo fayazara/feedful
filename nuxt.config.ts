@@ -36,12 +36,5 @@ export default defineNuxtConfig({
       orientation: "portrait",
       theme_color: "#ffffff",
     },
-    workbox: {
-      navigateFallback: "/",
-    },
-    devOptions: {
-      enabled: true,
-      type: "module",
-    },
   },
 });

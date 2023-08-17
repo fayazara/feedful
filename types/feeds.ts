@@ -108,16 +108,16 @@ export interface RssFeedMeta {
 }
 
 export interface Feed {
-  id: string;
-  label: string;
+  name: string | null | undefined | any;
   type:
     | "github"
     | "youtube"
     | "rss"
     | "producthunt"
     | "hackernews"
-    | "dribbble";
+    | "dribbble"
+    | any;
   icon?: string;
-  url: string;
+  url?: string;
   meta?: GithubFeedMeta | YoutubeFeedMeta | RssFeedMeta;
 }

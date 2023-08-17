@@ -5,6 +5,7 @@ export default [
     icon: "logos:producthunt",
     disabled: false,
     description: "Top products of the day",
+    url: "https://www.producthunt.com/",
   },
   {
     type: "hackernews",
@@ -12,6 +13,7 @@ export default [
     icon: "logos:ycombinator",
     disabled: false,
     description: "Hackernews home page",
+    url: "https://news.ycombinator.com/",
   },
   {
     type: "github",
@@ -19,6 +21,7 @@ export default [
     icon: "logos:github-icon",
     disabled: false,
     description: "Trending repositories on Github",
+    url: "https://github.com/trending",
   },
   {
     type: "youtube",
@@ -26,6 +29,7 @@ export default [
     icon: "logos:youtube-icon",
     disabled: false,
     description: "Pick a channel and watch the latest videos",
+    url: "https://www.youtube.com/",
   },
   {
     type: "dribbble",
@@ -33,6 +37,7 @@ export default [
     icon: "logos:dribbble-icon",
     disabled: false,
     description: "Trending shots on Dribbble",
+    url: "https://dribbble.com/",
   },
   {
     type: "google-news",
@@ -40,6 +45,7 @@ export default [
     icon: "GoogleNews",
     disabled: false,
     description: "Top news from Google news for your country",
+    url: "https://news.google.com/",
   },
   {
     type: "rss",
