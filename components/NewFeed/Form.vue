@@ -13,17 +13,19 @@
         @click="$emit('close')"
       />
     </div>
-    <ul class="divide-y divide-gray-100 h-[75vh] sm:h-[420px] overflow-auto">
-      <li class="sticky top-0 bg-white z-20">
-        <UInput
-          icon="i-heroicons-magnifying-glass-20-solid"
-          size="xl"
-          variant="none"
-          color="white"
-          :trailing="false"
-          placeholder="Search"
-        />
-      </li>
+    <div class="sticky top-0 bg-white z-20 border-b border-gray-200">
+      <UInput
+        icon="i-heroicons-magnifying-glass-20-solid"
+        size="xl"
+        variant="none"
+        color="white"
+        :trailing="false"
+        placeholder="Search"
+      />
+    </div>
+    <ul
+      class="divide-y divide-gray-100 h-[65vh] pwa:h-[72vh] sm:h-[420px] overflow-auto"
+    >
       <li v-for="feed in feedTypes" :key="feed.type" class="relative">
         <NewFeedListItem
           :key="feed.type"
@@ -137,7 +139,7 @@
       </li>
     </ul>
     <footer
-      class="py-4 px-4 flex items-center justify-end gap-x-3 border-t border-gray-200 bg-gray-50 pwa:pb-8"
+      class="h-12 pwa:h-20 px-4 flex items-center justify-end gap-x-3 border-t border-gray-200 bg-gray-50 pwa:pb-8"
     >
       <UButton
         type="button"
@@ -188,12 +190,6 @@ const selectedFeed = ref<Feed>({
   type: "",
   url: "",
   icon: "",
-});
-
-const safeInsetArea = computed(() => {
-  return getComputedStyle(document.documentElement).getPropertyValue(
-    "--safe-area-inset-bottom"
-  );
 });
 
 const selectedGithubMeta = computed(

@@ -1,7 +1,14 @@
 <template>
   <main class="h-screen flex flex-col">
-    <Navbar @openNewFeedModal="newFeedModal = true" />
-    <div class="flex-grow flex overflow-x-auto snap-x snap-mandatory bg-white">
+    <Navbar
+      @openNewFeedModal="newFeedModal = true"
+      :user="user"
+      @signOut="signOut"
+    />
+    <div
+      v-if="feeds && feeds.length"
+      class="flex-grow flex overflow-x-auto snap-x snap-mandatory bg-white"
+    >
       <FeedColumn
         v-for="feed in feeds"
         :key="feed.id"
@@ -12,6 +19,21 @@
       >
         <component :is="components(feed.type)" v-bind="{ ...feed.meta }" />
       </FeedColumn>
+    </div>
+    <div
+      v-else
+      class="flex-grow flex items-center justify-center flex-col gap-3"
+    >
+      <EmptyState />
+      <h2 class="text-lg">You have not added feeds yet</h2>
+      <UButton
+        @click="newFeedModal = true"
+        variant="solid"
+        color="gray"
+        size="sm"
+      >
+        Add a feed now
+      </UButton>
     </div>
     <UModal
       v-model="newFeedModal"
@@ -63,8 +85,6 @@ const pushNewFeed = (feed: Feed) => {
     feeds.value?.push(feed);
     newFeedModal.value = false;
   }
-  const scrollContainer = document.querySelector(".snap-x") as HTMLElement;
-  scrollContainer.scrollLeft = scrollContainer.scrollWidth;
 };
 
 const deleteFeed = async (feed: Feed) => {
@@ -72,5 +92,11 @@ const deleteFeed = async (feed: Feed) => {
     feeds.value = feeds.value.filter((f) => f.id !== feed.id);
   }
   await client.from("feeds").delete().match({ id: feed.id });
+};
+
+const signOut = async () => {
+  const { error } = await client.auth.signOut();
+  if (error) console.log(error);
+  feeds.value = [];
 };
 </script>

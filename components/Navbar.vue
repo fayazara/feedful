@@ -54,10 +54,8 @@
 </template>
 
 <script lang="ts" setup>
-const supabase = useSupabaseClient();
-const user = useSupabaseUser();
-
-
+const emit = defineEmits(["signOut"]);
+const props = defineProps(["user"]);
 
 const date = computed(() => {
   return new Date().toLocaleDateString("en-US", {
@@ -68,13 +66,8 @@ const date = computed(() => {
   });
 });
 
-const signOut = async () => {
-  const { error } = await supabase.auth.signOut();
-  if (error) console.log(error);
-};
-
 const items = computed(() => {
-  const userLabel = user.value?.email ?? "Unknown User";
+  const userLabel = props.user.email ?? "Unknown User";
   return [
     [
       {
@@ -108,7 +101,7 @@ const items = computed(() => {
         label: "Sign out",
         icon: "i-heroicons-arrow-left-on-rectangle",
         click: () => {
-          signOut();
+          emit("signOut");
         },
       },
     ],
