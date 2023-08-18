@@ -13,8 +13,8 @@
         @click="$emit('close')"
       />
     </div>
-    <ul class="divide-y divide-gray-100 h-[85vh] sm:h-[420px] overflow-auto">
-      <li>
+    <ul class="divide-y divide-gray-100 h-[75vh] sm:h-[420px] overflow-auto">
+      <li class="sticky top-0 bg-white z-20">
         <UInput
           icon="i-heroicons-magnifying-glass-20-solid"
           size="xl"
@@ -24,7 +24,7 @@
           placeholder="Search"
         />
       </li>
-      <li v-for="feed in feedTypes" :key="feed.type">
+      <li v-for="feed in feedTypes" :key="feed.type" class="relative">
         <NewFeedListItem
           :key="feed.type"
           @select="selectFeed(feed.type)"
@@ -137,7 +137,7 @@
       </li>
     </ul>
     <footer
-      class="h-12 px-4 flex items-center justify-end gap-x-3 border-t border-gray-200 bg-gray-50 pwa:pb-[--safe-area-inset-bottom]"
+      class="py-4 px-4 flex items-center justify-end gap-x-3 border-t border-gray-200 bg-gray-50 pwa:pb-8"
     >
       <UButton
         type="button"
@@ -188,6 +188,12 @@ const selectedFeed = ref<Feed>({
   type: "",
   url: "",
   icon: "",
+});
+
+const safeInsetArea = computed(() => {
+  return getComputedStyle(document.documentElement).getPropertyValue(
+    "--safe-area-inset-bottom"
+  );
 });
 
 const selectedGithubMeta = computed(
