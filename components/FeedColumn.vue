@@ -10,8 +10,15 @@
         <span v-else>{{ name }}</span>
       </h2>
       <span class="flex-1"></span>
-
-      <slot name="actions"></slot>
+      <UDropdown :items="actions">
+        <UButton
+          icon="i-heroicons-ellipsis-vertical"
+          size="sm"
+          :square="true"
+          variant="ghost"
+          color="gray"
+        />
+      </UDropdown>
     </header>
     <div class="flex-1 overflow-auto">
       <slot />
@@ -25,4 +32,25 @@ const props = defineProps<{
   icon?: string;
   url?: string;
 }>();
+const emit = defineEmits(["edit", "delete"]);
+const actions = [
+  [
+    {
+      label: "Edit",
+      icon: "i-heroicons-pencil-square-20-solid",
+      shortcuts: ["E"],
+      disabled: true,
+      click: () => {
+        emit("delete");
+      },
+    },
+    {
+      label: "Delete",
+      icon: "i-heroicons-trash-20-solid",
+      click: () => {
+        emit("delete");
+      },
+    },
+  ],
+];
 </script>

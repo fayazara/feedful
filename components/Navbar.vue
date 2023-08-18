@@ -11,7 +11,7 @@
           :square="true"
           variant="ghost"
           color="gray"
-          @click="newFeedModal = true"
+          @click="$emit('openNewFeedModal')"
         />
       </UTooltip>
       <UDropdown
@@ -50,9 +50,6 @@
       </UDropdown>
       <NuxtLink v-else to="/auth/login"> Login </NuxtLink>
     </div>
-    <UModal v-model="newFeedModal">
-      <NewFeedForm @close="newFeedModal = false" />
-    </UModal>
   </nav>
 </template>
 
@@ -60,7 +57,7 @@
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
 
-const newFeedModal = ref(false);
+
 
 const date = computed(() => {
   return new Date().toLocaleDateString("en-US", {

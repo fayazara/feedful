@@ -172,9 +172,12 @@ import {
 } from "@/constants/githubMeta";
 import { refDebounced } from "@vueuse/core";
 
+const toast = useToast();
+
 const client = useSupabaseClient<Database>();
 const user = useSupabaseUser();
 
+const emit = defineEmits(["save"]);
 const selectedFeed = ref<Feed>({
   name: "",
   type: "",
@@ -350,17 +353,35 @@ function clearYoutubeChannel() {
 async function submit() {
   if (!validateForm()) return;
   const feed = transformData(JSON.parse(JSON.stringify(selectedFeed.value)));
-  const { data, error } = await client
-    .from("feeds")
-    .insert({ ...feed, user_id: user.value.id })
-    .select("*")
-    .single();
-  if (error) {
-    console.log(error);
-    return;
+  try {
+    if (!user.value) {
+      return toast.add({
+        title: "Error",
+        description: "You need to be logged in to add a feed",
+        icon: "i-heroicons-x-circle",
+        color: "red",
+      });
+    } else {
+      const { data, error } = await client
+        .from("feeds")
+        .insert({ ...feed, user_id: user.value.id })
+        .select("id, name, type, url, icon, meta")
+        .single();
+      if (error) {
+        throw error;
+      }
+      if (data) {
+        emit("save", data);
+      }
+    }
+  } catch (error) {
+    toast.add({
+      title: "Error",
+      description: error.message,
+      icon: "i-heroicons-x-circle",
+      color: "red",
+    });
   }
-  if (data) {
-    console.log(data);
-  }
+  console.log(error);
 }
 </script>
