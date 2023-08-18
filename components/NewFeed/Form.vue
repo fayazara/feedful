@@ -134,6 +134,18 @@
                 <UInput v-model="selectedRssMeta.feedUrl" />
               </UFormGroup>
             </div>
+            <div
+              v-else-if="feed.type === 'reddit' && selectedFeed.meta"
+              class="pb-3 px-4 bg-gray-50"
+            >
+              <UFormGroup
+                label="subreddit"
+                name="subreddit"
+                :error="errors.subreddit"
+              >
+                <UInput v-model="selectedRedditMeta.subreddit" />
+              </UFormGroup>
+            </div>
           </template>
         </NewFeedListItem>
       </li>
@@ -170,6 +182,7 @@ import {
   GithubFeedMeta,
   YoutubeFeedMeta,
   RssFeedMeta,
+  RedditFeedMeta,
   YoutubeChannel,
 } from "@/types/feeds";
 import feedTypes from "@/constants/feedtypes";
@@ -200,11 +213,16 @@ const selectedYoutubeMeta = computed(
 );
 const selectedRssMeta = computed(() => selectedFeed.value.meta as RssFeedMeta);
 
+const selectedRedditMeta = computed(
+  () => selectedFeed.value.meta as RedditFeedMeta
+);
+
 const errors = ref({
   githubLanguage: "",
   githubSince: "",
   youtubeChannel: "",
   rssFeedUrl: "",
+  subreddit: "",
 });
 
 function selectFeed(type: string) {
@@ -244,6 +262,17 @@ function selectFeed(type: string) {
         },
       };
       break;
+    case "reddit":
+      selectedFeed.value = {
+        name: "",
+        type: "reddit",
+        url: "",
+        icon: feed?.icon || "",
+        meta: {
+          subreddit: "",
+        },
+      };
+      break;
     default:
       selectedFeed.value = {
         name: feed?.name || "",
@@ -260,6 +289,7 @@ function resetErrors() {
   errors.value.githubSince = "";
   errors.value.youtubeChannel = "";
   errors.value.rssFeedUrl = "";
+  errors.value.subreddit = "";
 }
 
 function validateForm() {
@@ -288,6 +318,11 @@ function validateForm() {
     return false;
   }
 
+  if (type === "reddit" && !meta.subreddit) {
+    errors.value.subreddit = "Please enter a subreddit";
+    return false;
+  }
+
   return true;
 }
 
@@ -309,6 +344,13 @@ function transformData(feed: Feed) {
     return {
       ...feed,
       url: `https://youtube.com/channel/${selectedYoutubeMeta.value.channelId}`,
+    };
+  }
+  if (feed.type === "reddit") {
+    return {
+      ...feed,
+      name: `r/${selectedRedditMeta.value.subreddit}`,
+      url: `https://reddit/com/r/${selectedRedditMeta.value.subreddit}`,
     };
   }
   return feed;

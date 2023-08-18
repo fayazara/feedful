@@ -28,8 +28,15 @@ export default [
     name: "Youtube",
     icon: "logos:youtube-icon",
     disabled: false,
-    description: "Pick a channel and watch the latest videos",
+    description: "Latest videos from a channel",
     url: "https://www.youtube.com/",
+  },
+  {
+    type: "reddit",
+    name: "Sub Reddit",
+    icon: "logos:reddit-icon",
+    disabled: false,
+    description: "Top posts from a subreddit",
   },
   {
     type: "dribbble",

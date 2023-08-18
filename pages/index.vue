@@ -65,7 +65,8 @@ const { data: feeds } = await useAsyncData("feeds", async () => {
   const { data } = await client
     .from("feeds")
     .select("*")
-    .eq("user_id", user.value.id);
+    .eq("user_id", user.value.id)
+    .order("created_at", { ascending: true });
   return data as Feed[];
 });
 
@@ -76,6 +77,7 @@ const components = (type: string) => {
     github: "FeedGithubTrending",
     youtube: "FeedYoutube",
     dribbble: "FeedDribbble",
+    reddit: "FeedReddit",
   };
   return feedMap[type] as string;
 };

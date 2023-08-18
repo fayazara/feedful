@@ -107,6 +107,10 @@ export interface RssFeedMeta {
   feedUrl: string;
 }
 
+export interface RedditFeedMeta {
+  subreddit: string;
+}
+
 export interface Feed {
   name: string | null | undefined | any;
   type:
@@ -119,5 +123,5 @@ export interface Feed {
     | any;
   icon?: string;
   url?: string;
-  meta?: GithubFeedMeta | YoutubeFeedMeta | RssFeedMeta;
+  meta?: GithubFeedMeta | YoutubeFeedMeta | RssFeedMeta | RedditFeedMeta;
 }
