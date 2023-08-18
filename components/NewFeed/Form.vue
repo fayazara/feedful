@@ -13,7 +13,7 @@
         @click="$emit('close')"
       />
     </div>
-    <ul class="divide-y divide-gray-100 h-[50vh] sm:h-[420px] overflow-auto">
+    <ul class="divide-y divide-gray-100 h-[85vh] sm:h-[420px] overflow-auto">
       <li>
         <UInput
           icon="i-heroicons-magnifying-glass-20-solid"
@@ -136,10 +136,15 @@
         </NewFeedListItem>
       </li>
     </ul>
-    <div
-      class="h-12 px-4 flex items-center justify-end gap-x-3 border-t border-gray-200 bg-gray-50"
+    <footer
+      class="h-12 px-4 flex items-center justify-end gap-x-3 border-t border-gray-200 bg-gray-50 pwa:pb-[--safe-area-inset-bottom]"
     >
-      <UButton color="gray" @click="$emit('close')" variant="soft" size="xs"
+      <UButton
+        type="button"
+        color="gray"
+        @click="$emit('close')"
+        variant="soft"
+        size="xs"
         >Cancel</UButton
       >
       <UButton
@@ -152,7 +157,7 @@
       >
         Add
       </UButton>
-    </div>
+    </footer>
   </div>
 </template>
 

@@ -13,6 +13,9 @@ module.exports = {
       colors: {
         peach: "#fbfaf8",
       },
+      screens: {
+        pwa: { raw: "(display-mode: standalone)" },
+      },
     },
   },
   plugins: [],

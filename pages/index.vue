@@ -1,7 +1,7 @@
 <template>
   <main class="h-screen flex flex-col">
     <Navbar @openNewFeedModal="newFeedModal = true" />
-    <div class="flex-grow flex overflow-x-auto snap-x snap-mandatory">
+    <div class="flex-grow flex overflow-x-auto snap-x snap-mandatory bg-white">
       <FeedColumn
         v-for="feed in feeds"
         :key="feed.id"
@@ -13,7 +13,20 @@
         <component :is="components(feed.type)" v-bind="{ ...feed.meta }" />
       </FeedColumn>
     </div>
-    <UModal v-model="newFeedModal">
+    <UModal
+      v-model="newFeedModal"
+      :ui="{
+        padding: 'p-0',
+        rounded: 'rounded-t-xl sm:rounded-lg',
+        overlay: {
+          background: 'bg-gray-900/75 sm:bg-gray-500/75',
+        },
+        transition: {
+          enterFrom: 'opacity-0 translate-y-full sm:translate-y-0 sm:scale-95',
+          leaveFrom: 'opacity-100 translate-y-0 sm:scale-100',
+        },
+      }"
+    >
       <NewFeedForm @close="newFeedModal = false" @save="pushNewFeed" />
     </UModal>
   </main>
