@@ -50,6 +50,8 @@ const pushNewFeed = (feed: Feed) => {
     feeds.value?.push(feed);
     newFeedModal.value = false;
   }
+  const scrollContainer = document.querySelector(".snap-x") as HTMLElement;
+  scrollContainer.scrollLeft = scrollContainer.scrollWidth;
 };
 
 const deleteFeed = async (feed: Feed) => {

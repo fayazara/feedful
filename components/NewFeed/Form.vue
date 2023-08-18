@@ -381,7 +381,7 @@ async function submit() {
       icon: "i-heroicons-x-circle",
       color: "red",
     });
+    console.log(error);
   }
-  console.log(error);
 }
 </script>

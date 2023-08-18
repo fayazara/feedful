@@ -27,7 +27,7 @@
 </template>
 <script lang="ts" setup>
 const props = defineProps<{
-  lang: string;
+  language: string;
   since: string;
 }>();
 
@@ -38,7 +38,7 @@ const {
   refresh,
 } = await useFetch("/api/feed/github-trending", {
   params: {
-    lang: props.lang,
+    lang: props.language,
     since: props.since,
   },
   server: false,
