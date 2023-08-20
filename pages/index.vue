@@ -39,9 +39,9 @@
       v-model="newFeedModal"
       :ui="{
         padding: 'p-0',
-        rounded: 'rounded-t-xl sm:rounded-lg',
+        rounded: 'rounded-t-xl sm:rounded-xl',
         overlay: {
-          background: 'bg-gray-900/75 sm:bg-gray-500/75',
+          background: 'bg-[rgba(0,8,47,.275)] saturate-50',
         },
         transition: {
           enterFrom: 'opacity-0 translate-y-full sm:translate-y-0 sm:scale-95',

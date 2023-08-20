@@ -1,5 +1,4 @@
 import { load } from "cheerio";
-import { Dribbble } from "@/types/feeds";
 import { sleep } from "@/utils";
 import fixtures from "./dribbbleFixtures";
 

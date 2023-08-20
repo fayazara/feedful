@@ -4,7 +4,7 @@
     <div
       v-for="(post, id) in posts"
       :key="id"
-      class="px-3 py-4 group hover:bg-gray-100"
+      class="px-3 py-4 group hover:bg-gray-50"
     >
       <a :href="post.url" target="_blank">
         <img

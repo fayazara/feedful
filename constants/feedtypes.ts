@@ -49,7 +49,7 @@ export default [
   {
     type: "google-news",
     name: "Google news",
-    icon: "GoogleNews",
+    icon: "GoogleNewsLogo",
     disabled: true,
     description: "Top news from Google news for your country",
     url: "https://news.google.com/",

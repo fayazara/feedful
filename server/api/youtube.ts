@@ -1,9 +1,3 @@
-import {
-  YouTubeSearchItem,
-  YouTubeSearchResponse,
-  YoutubeChannel,
-} from "@/types/feeds";
-
 const URL = `https://youtube.googleapis.com/youtube/v3/search`;
 
 export default defineEventHandler(async (event) => {

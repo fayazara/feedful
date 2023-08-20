@@ -1,9 +1,9 @@
 <template>
-  <nav class="h-12 px-4 border-b flex items-center space-x-3">
-    <img src="/logo-full.svg" alt="Logo" class="h-10 w-auto" />
-    <p class="text-sm text-gray-600">{{ date }}</p>
+  <nav class="h-10 px-4 border-b flex items-center space-x-3">
+    <img src="/logo-full.svg" alt="Logo" class="h-9 w-auto" />
     <div class="flex-grow"></div>
     <div class="flex items-center">
+      <p class="text-xs text-gray-600 mr-2">{{ date }}</p>
       <UTooltip text="Add Feed">
         <UButton
           icon="i-heroicons-plus-circle"
@@ -20,6 +20,7 @@
         :ui="{
           item: { disabled: 'cursor-text select-text' },
           container: 'z-50',
+          width: 'w-56',
         }"
         :popper="{ placement: 'bottom-start' }"
       >
@@ -32,11 +33,19 @@
         />
 
         <template #account="{ item }">
-          <div class="text-left">
-            <p>Signed in as</p>
-            <p class="truncate font-medium text-gray-900 dark:text-white">
-              {{ item.label }}
-            </p>
+          <div class="flex items-center justify-between w-full">
+            <div class="text-left flex flex-col space-y-1">
+              <p class="text-xs font-medium leading-none text-gray-900">
+                Signed in as
+              </p>
+              <p class="text-xs leading-none text-gray-500 truncate">
+                {{ item.label }}
+              </p>
+            </div>
+            <UAvatar
+              src="https://api.dicebear.com/6.x/notionists/svg?seed=Cali"
+              alt="user"
+            />
           </div>
         </template>
 
@@ -48,7 +57,18 @@
           />
         </template>
       </UDropdown>
-      <NuxtLink v-else to="/auth/login"> Login </NuxtLink>
+      <template v-else>
+        <UTooltip text="Login">
+          <UButton
+            to="/auth/login"
+            icon="i-lucide-user"
+            size="sm"
+            :square="true"
+            variant="ghost"
+            color="gray"
+          />
+        </UTooltip>
+      </template>
     </div>
   </nav>
 </template>
@@ -78,28 +98,26 @@ const items = computed(() => {
     ],
     [
       {
-        label: "Settings",
-        icon: "i-heroicons-cog-8-tooth",
-      },
-    ],
-    [
-      {
-        label: "Documentation",
-        icon: "i-heroicons-book-open",
+        label: "Profile",
+        icon: "i-lucide-user",
       },
       {
-        label: "Changelog",
-        icon: "i-heroicons-megaphone",
+        label: "Feed settings",
+        icon: "i-lucide-menu-square",
       },
       {
-        label: "Status",
-        icon: "i-heroicons-signal",
+        label: "Billing",
+        icon: "i-lucide-receipt",
+      },
+      {
+        label: "What's new",
+        icon: "i-lucide-sparkles",
       },
     ],
     [
       {
         label: "Sign out",
-        icon: "i-heroicons-arrow-left-on-rectangle",
+        icon: "i-lucide-log-out",
         click: () => {
           emit("signOut");
         },

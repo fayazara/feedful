@@ -5,7 +5,7 @@
       <a
         :href="repo.url"
         target="_blank"
-        class="flex px-3 gap-2 py-4 hover:bg-gray-100"
+        class="flex px-3 gap-2 py-4 hover:bg-gray-50"
       >
         <div class="flex-1 min-w-0">
           <p class="font-medium text-sm text-gray-900 break-words">

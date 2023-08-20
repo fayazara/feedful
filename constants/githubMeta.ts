@@ -4,18 +4,6 @@ export const programmingLanguages = [
     label: "All",
   },
   {
-    language: "assembly",
-    label: "Assembly",
-  },
-  {
-    language: "astro",
-    label: "Astro",
-  },
-  {
-    language: "basic",
-    label: "BASIC",
-  },
-  {
     language: "c",
     label: "C",
   },
@@ -26,10 +14,6 @@ export const programmingLanguages = [
   {
     language: "c++",
     label: "C++",
-  },
-  {
-    language: "clojure",
-    label: "Clojure",
   },
   {
     language: "css",
@@ -80,32 +64,12 @@ export const programmingLanguages = [
     label: "Kotlin",
   },
   {
-    language: "less",
-    label: "Less",
-  },
-  {
     language: "lua",
     label: "Lua",
   },
   {
-    language: "markdown",
-    label: "Markdown",
-  },
-  {
     language: "objective-c",
     label: "Objective-C",
-  },
-  {
-    language: "ocaml",
-    label: "OCaml",
-  },
-  {
-    language: "pug",
-    label: "Pug",
-  },
-  {
-    language: "puppet",
-    label: "Puppet",
   },
   {
     language: "python",
@@ -124,10 +88,6 @@ export const programmingLanguages = [
     label: "Rust",
   },
   {
-    language: "sass",
-    label: "Sass",
-  },
-  {
     language: "scala",
     label: "Scala",
   },
@@ -138,14 +98,6 @@ export const programmingLanguages = [
   {
     language: "sql",
     label: "SQL",
-  },
-  {
-    language: "sqlpl",
-    label: "SQLPL",
-  },
-  {
-    language: "stylus",
-    label: "Stylus",
   },
   {
     language: "svelte",

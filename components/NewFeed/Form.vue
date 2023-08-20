@@ -112,7 +112,7 @@
                     v-for="channel in youtubeChannels"
                     type="button"
                     @click="selectYoutubeChannel(channel)"
-                    class="text-left flex items-cente gap-1 px-2 py-1.5 text-sm text-gray-900 hover:bg-gray-100 w-full"
+                    class="text-left flex items-cente gap-1 px-2 py-1.5 text-sm text-gray-900 hover:bg-gray-50 w-full"
                   >
                     <div class="flex items-center gap-2 min-w-0">
                       <UAvatar :src="channel.thumbnail" size="2xs" />
@@ -121,18 +121,6 @@
                   </button>
                 </div>
               </div>
-            </div>
-            <div
-              v-else-if="feed.type === 'rss' && selectedFeed.meta"
-              class="pb-3 px-4 bg-gray-50"
-            >
-              <UFormGroup
-                label="Feed URL"
-                name="feedUrl"
-                :error="errors.rssFeedUrl"
-              >
-                <UInput v-model="selectedRssMeta.feedUrl" />
-              </UFormGroup>
             </div>
             <div
               v-else-if="feed.type === 'reddit' && selectedFeed.meta"
@@ -177,15 +165,8 @@
 
 <script lang="ts" setup>
 import { Database } from "@/types/database.types";
-import {
-  Feed,
-  GithubFeedMeta,
-  YoutubeFeedMeta,
-  RssFeedMeta,
-  RedditFeedMeta,
-  YoutubeChannel,
-} from "@/types/feeds";
 import feedTypes from "@/constants/feedtypes";
+
 import {
   programmingLanguages,
   githubFrequencyOptions,
@@ -211,7 +192,6 @@ const selectedGithubMeta = computed(
 const selectedYoutubeMeta = computed(
   () => selectedFeed.value.meta as YoutubeFeedMeta
 );
-const selectedRssMeta = computed(() => selectedFeed.value.meta as RssFeedMeta);
 
 const selectedRedditMeta = computed(
   () => selectedFeed.value.meta as RedditFeedMeta
@@ -221,7 +201,6 @@ const errors = ref({
   githubLanguage: "",
   githubSince: "",
   youtubeChannel: "",
-  rssFeedUrl: "",
   subreddit: "",
 });
 
@@ -251,17 +230,6 @@ function selectFeed(type: string) {
         },
       };
       break;
-    case "rss":
-      selectedFeed.value = {
-        name: "",
-        type: "rss",
-        url: "",
-        icon: feed?.icon || "",
-        meta: {
-          feedUrl: "",
-        },
-      };
-      break;
     case "reddit":
       selectedFeed.value = {
         name: "",
@@ -288,7 +256,6 @@ function resetErrors() {
   errors.value.githubLanguage = "";
   errors.value.githubSince = "";
   errors.value.youtubeChannel = "";
-  errors.value.rssFeedUrl = "";
   errors.value.subreddit = "";
 }
 
@@ -310,11 +277,6 @@ function validateForm() {
 
   if (type === "youtube" && !meta.channelId) {
     errors.value.youtubeChannel = "Channel required";
-    return false;
-  }
-
-  if (type === "rss" && !meta.feedUrl) {
-    errors.value.rssFeedUrl = "Please enter a feed url";
     return false;
   }
 

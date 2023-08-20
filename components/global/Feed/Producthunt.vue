@@ -5,7 +5,7 @@
       <a
         :href="post.url"
         target="_blank"
-        class="flex px-3 py-4 gap-5 hover:bg-gray-100"
+        class="flex px-3 py-4 gap-5 hover:bg-gray-50"
       >
         <UAvatar
           :src="post.thumbnail.url"

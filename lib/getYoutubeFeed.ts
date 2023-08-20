@@ -1,14 +1,21 @@
-import { parse } from "@/utils/rssparser";
-import { YoutubePost } from "@/types/feeds";
+import { rssParser } from "@/utils";
 
-export default async (channelId: string): Promise<YoutubePost[]> => {
+export default async function fetchYoutubePosts(
+  channelId: string
+): Promise<YoutubePost[]> {
   try {
-    const feed = await parse(
+    const feed = await rssParser(
       `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
     );
+
+    if (!feed || !feed.items || !Array.isArray(feed.items)) {
+      console.error("Invalid feed structure:", feed);
+      return [];
+    }
+
     return feed.items;
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching YouTube posts:", error);
     return [];
   }
-};
+}

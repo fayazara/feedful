@@ -4,7 +4,7 @@
     <div
       v-for="(post, id) in posts"
       :key="id"
-      class="px-3 py-4 group hover:bg-gray-100"
+      class="px-3 py-4 group hover:bg-gray-50"
     >
       <a :href="post.url" target="_blank">
         <div v-if="post.is_image" class="flex flex-col gap-2">
@@ -25,6 +25,7 @@
               <p
                 v-if="post.text"
                 class="text-xs text-gray-500 mt-1 min-w-0 flex-1 break-words line-clamp-3"
+                style="word-break: break-word"
               >
                 {{ post.text }}
               </p>
@@ -56,6 +57,7 @@
           <p
             v-if="post.text"
             class="text-xs text-gray-500 mt-1 min-w-0 flex-1 break-words line-clamp-3"
+            style="word-break: break-word"
           >
             {{ post.text }}
           </p>
@@ -77,6 +79,7 @@
           <p
             v-if="post.text"
             class="text-xs text-gray-500 mt-1 min-w-0 flex-1 break-words line-clamp-3"
+            style="word-break: break-word"
           >
             {{ post.text }}
           </p>

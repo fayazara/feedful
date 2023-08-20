@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     "@vite-pwa/nuxt",
   ],
   ui: {
-    icons: ["heroicons", "logos"],
+    icons: ["heroicons", "logos", "lucide"],
   },
   colorMode: {
     preference: "light",
@@ -35,13 +35,6 @@ export default defineNuxtConfig({
       display: "standalone",
       orientation: "portrait",
       theme_color: "#ffffff",
-    },
-    workbox: {
-      navigateFallback: "/",
-    },
-    devOptions: {
-      enabled: true,
-      type: "module",
     },
   },
 });

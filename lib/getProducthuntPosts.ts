@@ -1,4 +1,3 @@
-import { Producthunt } from "@/types/feeds";
 import { sleep } from "@/utils";
 import fixtures from "./phPostsFixtures";
 

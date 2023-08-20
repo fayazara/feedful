@@ -3,7 +3,7 @@
     class="h-full w-full max-w-md flex border-r flex-col flex-shrink-0 snap-center"
     style="-webkit-tap-highlight-color: transparent"
   >
-    <header class="py-2 px-4 bg-white flex items-center space-x-3 border-b">
+    <header class="h-10 px-4 pe-2 bg-white flex items-center space-x-3 border-b">
       <Icon v-if="icon" :name="icon" class="h-5 w-5" />
       <h2 class="">
         <a v-if="url" :href="url" target="_blank"> {{ name }} </a>
@@ -38,7 +38,6 @@ const actions = [
     {
       label: "Edit",
       icon: "i-heroicons-pencil-square-20-solid",
-      shortcuts: ["E"],
       disabled: true,
       click: () => {
         emit("delete");
@@ -46,7 +45,7 @@ const actions = [
     },
     {
       label: "Delete",
-      icon: "i-heroicons-trash-20-solid",
+      icon: "i-lucide-trash-2",
       click: () => {
         emit("delete");
       },

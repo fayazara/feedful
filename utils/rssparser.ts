@@ -107,7 +107,7 @@ export default async (url: string) => {
     }
 
     Object.assign(obj, { media });
-
+    // @ts-ignore
     rss.items.push(obj);
   }
 

@@ -20,7 +20,7 @@
           <UBadge
             v-if="disabled"
             variant="subtle"
-            color="gray"
+            color="primary"
             size="xs"
             label="Coming soon"
           />

@@ -1,6 +1,5 @@
 import { sleep } from "@/utils";
 import * as cheerio from "cheerio";
-import { Github } from "@/types/feeds";
 import { kFormatter } from "@/utils";
 
 import fixtures from "./githubReposFixtures";
