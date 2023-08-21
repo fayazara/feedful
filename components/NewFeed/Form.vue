@@ -152,12 +152,17 @@
       <UButton
         @click="submit"
         color="black"
-        icon="i-heroicons-arrow-small-right-20-solid"
         :trailing="true"
         :disabled="!selectedFeed.type"
         size="xs"
+        class="w-16 flex items-center justify-center"
       >
-        Add
+        <template #default>
+          <span v-if="loading">
+            <Spinner class="h-4 w-4" />
+          </span>
+          <span v-else>Add</span>
+        </template>
       </UButton>
     </footer>
   </div>
@@ -172,6 +177,8 @@ import {
   githubFrequencyOptions,
 } from "@/constants/githubMeta";
 import { refDebounced } from "@vueuse/core";
+
+const loading = ref(false);
 
 const toast = useToast();
 
@@ -363,8 +370,9 @@ function clearYoutubeChannel() {
 
 async function submit() {
   if (!validateForm()) return;
-  const feed = transformData(JSON.parse(JSON.stringify(selectedFeed.value)));
   try {
+    loading.value = true;
+    const feed = transformData(JSON.parse(JSON.stringify(selectedFeed.value)));
     if (!user.value) {
       return toast.add({
         title: "Error",
@@ -393,6 +401,8 @@ async function submit() {
       color: "red",
     });
     console.log(error);
+  } finally {
+    loading.value = false;
   }
 }
 </script>

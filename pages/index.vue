@@ -16,6 +16,11 @@
         :icon="feed.icon!"
         :url="feed.url!"
         @delete="deleteFeed(feed)"
+        @refresh="
+          () => {
+            console.log('refresh');
+          }
+        "
       >
         <component :is="components(feed.type)" v-bind="{ ...feed.meta }" />
       </FeedColumn>
@@ -58,7 +63,7 @@
 import { Database } from "@/types/database.types";
 const client = useSupabaseClient<Database>();
 const user = useSupabaseUser();
-
+const toast = useToast();
 const newFeedModal = ref(false);
 
 const { data: feeds } = await useAsyncData("feeds", async () => {
@@ -94,6 +99,7 @@ const deleteFeed = async (feed: Feed) => {
     feeds.value = feeds.value.filter((f) => f.id !== feed.id);
   }
   await client.from("feeds").delete().match({ id: feed.id });
+  toast.add({ title: `${feed.name} deleted` });
 };
 
 const signOut = async () => {

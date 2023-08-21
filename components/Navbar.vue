@@ -106,8 +106,8 @@ const items = computed(() => {
         icon: "i-lucide-menu-square",
       },
       {
-        label: "Billing",
-        icon: "i-lucide-receipt",
+        label: "Email digest",
+        icon: "i-lucide-mail",
       },
       {
         label: "What's new",

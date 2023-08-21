@@ -7,7 +7,7 @@ const DRIBBBLE_URL = "https://dribbble.com/shots";
 export default async (): Promise<Dribbble[]> => {
   try {
     if (process.env.NODE_ENV === "development") {
-      await sleep(1000);
+      await sleep(10000);
       return fixtures;
     } else {
       const response = await fetch(DRIBBBLE_URL);

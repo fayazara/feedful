@@ -12,7 +12,7 @@
             <img
               :src="post.thumbnail"
               :alt="post.title"
-              class="h-20 w-20 rounded-lg ring-1 ring-gray-200"
+              class="h-20 w-20 rounded-lg ring-1 object-cover ring-gray-200"
             />
             <div>
               <p class="text-xs text-gray-500">{{ post.subreddit }}</p>

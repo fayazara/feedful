@@ -3,7 +3,9 @@
     class="h-full w-full max-w-md flex border-r flex-col flex-shrink-0 snap-center"
     style="-webkit-tap-highlight-color: transparent"
   >
-    <header class="h-10 px-4 pe-2 bg-white flex items-center space-x-3 border-b">
+    <header
+      class="h-10 px-4 pe-2 bg-white flex items-center space-x-3 border-b"
+    >
       <Icon v-if="icon" :name="icon" class="h-5 w-5" />
       <h2 class="">
         <a v-if="url" :href="url" target="_blank"> {{ name }} </a>
@@ -32,7 +34,7 @@ const props = defineProps<{
   icon?: string;
   url?: string;
 }>();
-const emit = defineEmits(["edit", "delete"]);
+const emit = defineEmits(["edit", "delete", "refresh"]);
 const actions = [
   [
     {
@@ -40,7 +42,14 @@ const actions = [
       icon: "i-heroicons-pencil-square-20-solid",
       disabled: true,
       click: () => {
-        emit("delete");
+        emit("edit");
+      },
+    },
+    {
+      label: "Refresh",
+      icon: "i-lucide-rotate-cw",
+      click: () => {
+        emit("refresh");
       },
     },
     {

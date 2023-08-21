@@ -1,6 +1,6 @@
 export default defineAppConfig({
   ui: {
-    primary: "indigo",
+    primary: "sky",
     gray: "cool",
     formGroup: {
       help: "text-xs mt-1 text-gray-500 dark:text-gray-400",
