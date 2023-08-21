@@ -37,103 +37,23 @@
           :disabled="feed.disabled"
         >
           <template v-if="selectedFeed.type === feed.type">
-            <div
+            <NewFeedGithubMeta
               v-if="feed.type === 'github' && selectedFeed.meta"
-              class="pb-3 px-4 bg-gray-50 space-y-2"
-            >
-              <UFormGroup
-                label="Language"
-                name="language"
-                :error="errors.githubLanguage"
-              >
-                <USelect
-                  v-model="selectedGithubMeta.language"
-                  :options="programmingLanguages"
-                  option-attribute="label"
-                  value-attribute="language"
-                />
-              </UFormGroup>
-              <UFormGroup
-                label="Since"
-                name="since"
-                :error="errors.githubSince"
-              >
-                <USelect
-                  v-model="selectedGithubMeta.since"
-                  :options="githubFrequencyOptions"
-                  option-attribute="label"
-                />
-              </UFormGroup>
-            </div>
-            <div
+              v-model:language="selectedGithubMeta.language"
+              v-model:since="selectedGithubMeta.since"
+              :language-error="errors.githubLanguage"
+              :since-error="errors.githubSince"
+            />
+            <NewFeedYoutubeMeta
               v-else-if="feed.type === 'youtube' && selectedFeed.meta"
-              class="pb-3 px-4 bg-gray-50"
-            >
-              <div class="relative">
-                <div
-                  v-if="selectedYoutubeMeta.channelId"
-                  class="flex items-center gap-x-2 border-0 rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white text-gray-900 ring-1 ring-inset ring-gray-300"
-                >
-                  <UAvatar
-                    v-if="selectedYoutubeChannel.thumbnail"
-                    :src="selectedYoutubeChannel.thumbnail"
-                    size="2xs"
-                  />
-                  <div class="min-w-0">
-                    <p class="truncate">{{ selectedYoutubeChannel.name }}</p>
-                  </div>
-                  <span class="flex-1"></span>
-                  <UButton
-                    icon="i-heroicons-x-mark"
-                    square
-                    color="gray"
-                    variant="soft"
-                    size="2xs"
-                    @click="clearYoutubeChannel"
-                  />
-                </div>
-                <UFormGroup
-                  v-else
-                  label="Search youtube channels"
-                  name="channel"
-                  :error="errors.youtubeChannel"
-                >
-                  <UInput
-                    v-model="youtubeQuery"
-                    @blur="validateForm"
-                    icon="i-heroicons-magnifying-glass-20-solid"
-                  />
-                </UFormGroup>
-                <div
-                  v-if="youtubeChannels.length"
-                  class="mt-1 border rounded-lg w-full bg-white"
-                >
-                  <button
-                    v-for="channel in youtubeChannels"
-                    type="button"
-                    @click="selectYoutubeChannel(channel)"
-                    class="text-left flex items-cente gap-1 px-2 py-1.5 text-sm text-gray-900 hover:bg-gray-50 w-full"
-                  >
-                    <div class="flex items-center gap-2 min-w-0">
-                      <UAvatar :src="channel.thumbnail" size="2xs" />
-                      <span class="truncate">{{ channel.name }}</span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
+              @setChannel="selectYoutubeChannel"
+              :error="errors.youtubeChannel"
+            />
+            <NewFeedRedditMeta
               v-else-if="feed.type === 'reddit' && selectedFeed.meta"
-              class="pb-3 px-4 bg-gray-50"
-            >
-              <UFormGroup
-                label="subreddit"
-                name="subreddit"
-                :error="errors.subreddit"
-              >
-                <UInput v-model="selectedRedditMeta.subreddit" />
-              </UFormGroup>
-            </div>
+              :error="errors.subreddit"
+              v-model="selectedRedditMeta.subreddit"
+            />
           </template>
         </NewFeedListItem>
       </li>
@@ -172,11 +92,7 @@
 import { Database } from "@/types/database.types";
 import feedTypes from "@/constants/feedtypes";
 
-import {
-  programmingLanguages,
-  githubFrequencyOptions,
-} from "@/constants/githubMeta";
-import { refDebounced } from "@vueuse/core";
+import { programmingLanguages } from "@/constants/githubMeta";
 
 const loading = ref(false);
 
@@ -221,8 +137,8 @@ function selectFeed(type: string) {
         url: "",
         icon: feed?.icon || "",
         meta: {
-          language: "all",
-          since: "daily",
+          language: "",
+          since: "",
         },
       };
       break;
@@ -325,47 +241,11 @@ function transformData(feed: Feed) {
   return feed;
 }
 
-const youtubeQuery = ref("");
-const youtubeChannels = ref<YoutubeChannel[]>([]);
-
-async function searchYoutube(search: string) {
-  const channels = await $fetch("/api/youtube", { params: { search } });
-  return channels;
-}
-
-const debounced = refDebounced(youtubeQuery, 350);
-
-watch(debounced, async () => {
-  if (youtubeQuery.value.length > 2) {
-    const channels = await searchYoutube(youtubeQuery.value);
-    youtubeChannels.value = channels;
-  }
-});
-
-const selectedYoutubeChannel = ref<YoutubeChannel>({
-  id: "",
-  name: "",
-  thumbnail: "",
-});
-
 function selectYoutubeChannel(channel: YoutubeChannel) {
-  selectedYoutubeChannel.value = channel;
+  console.log(channel);
   selectedYoutubeMeta.value.channelId = channel.id;
   selectedFeed.value.name = channel.name;
   selectedFeed.value.url = `https://youtube.com/channel/${channel.id}`;
-  youtubeQuery.value = "";
-  youtubeChannels.value = [];
-}
-
-function clearYoutubeChannel() {
-  selectedYoutubeChannel.value = {
-    id: "",
-    name: "",
-    thumbnail: "",
-  };
-  selectedYoutubeMeta.value.channelId = "";
-  selectedFeed.value.name = "";
-  selectedFeed.value.url = "";
 }
 
 async function submit() {

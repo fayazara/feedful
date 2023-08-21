@@ -4,11 +4,13 @@
     style="-webkit-tap-highlight-color: transparent"
   >
     <header
-      class="h-10 px-4 pe-2 bg-white flex items-center space-x-3 border-b"
+      class="h-10 px-4 pe-2 bg-white flex items-center space-x-3 border-b min-w-0"
     >
       <Icon v-if="icon" :name="icon" class="h-5 w-5" />
-      <h2 class="">
-        <a v-if="url" :href="url" target="_blank"> {{ name }} </a>
+      <h2 class="truncate">
+        <a v-if="url" :href="url" target="_blank">
+          {{ name }}
+        </a>
         <span v-else>{{ name }}</span>
       </h2>
       <span class="flex-1"></span>

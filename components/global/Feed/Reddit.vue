@@ -19,6 +19,7 @@
               <p
                 v-if="post.title"
                 class="font-medium text-sm text-gray-900 break-words"
+                style="word-break: break-word"
               >
                 {{ post.title }}
               </p>
@@ -42,6 +43,7 @@
           <p
             v-if="post.title"
             class="font-medium text-sm text-gray-900 break-words"
+            style="word-break: break-word"
           >
             {{ post.title }}
           </p>
@@ -73,6 +75,7 @@
           <p
             v-if="post.title"
             class="font-medium text-sm text-gray-900 break-words"
+            style="word-break: break-word"
           >
             {{ post.title }}
           </p>

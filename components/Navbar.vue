@@ -113,6 +113,10 @@ const items = computed(() => {
         label: "What's new",
         icon: "i-lucide-sparkles",
       },
+      {
+        label: "Report a problem",
+        icon: "i-lucide-alert-triangle",
+      },
     ],
     [
       {
