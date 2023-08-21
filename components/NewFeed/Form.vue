@@ -137,8 +137,8 @@ function selectFeed(type: string) {
         url: "",
         icon: feed?.icon || "",
         meta: {
-          language: "",
-          since: "",
+          language: "all",
+          since: "daily",
         },
       };
       break;

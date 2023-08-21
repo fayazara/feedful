@@ -8,6 +8,7 @@
     <div
       v-if="feeds && feeds.length"
       class="flex-grow flex overflow-x-auto snap-x snap-mandatory bg-white"
+      ref="feedContainer"
     >
       <FeedColumn
         v-for="feed in feeds"
@@ -65,6 +66,7 @@ const client = useSupabaseClient<Database>();
 const user = useSupabaseUser();
 const toast = useToast();
 const newFeedModal = ref(false);
+const feedContainer = ref<HTMLDivElement>();
 
 const { data: feeds } = await useAsyncData("feeds", async () => {
   const { data } = await client
@@ -91,6 +93,14 @@ const pushNewFeed = (feed: Feed) => {
   if (feed) {
     feeds.value?.push(feed);
     newFeedModal.value = false;
+    if (feedContainer.value) {
+      setTimeout(() => {
+        feedContainer.value?.scrollTo({
+          left: feedContainer.value.scrollWidth,
+          behavior: "smooth",
+        });
+      }, 200);
+    }
   }
 };
 

@@ -1,5 +1,5 @@
 <template>
-  <nav class="h-10 px-4 border-b flex items-center space-x-3">
+  <nav class="h-10 px-4 pe-2 border-b flex items-center space-x-3">
     <img src="/logo-full.svg" alt="Logo" class="h-9 w-auto" />
     <div class="flex-grow"></div>
     <div class="flex items-center">
@@ -25,7 +25,7 @@
         :popper="{ placement: 'bottom-start' }"
       >
         <UButton
-          icon="i-heroicons-ellipsis-vertical"
+          icon="i-lucide-user"
           size="sm"
           :square="true"
           variant="ghost"
