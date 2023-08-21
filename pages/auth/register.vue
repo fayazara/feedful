@@ -150,7 +150,6 @@ async function submit() {
     navigateTo("/auth/login");
   } catch (error) {
     console.log(error);
-  } finally {
     loading.value = false;
   }
 }

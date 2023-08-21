@@ -26,4 +26,22 @@ export default defineNuxtConfig({
       link: [...splashScreens],
     },
   },
+  pwa: {
+    manifest: {
+      name: "Feedful",
+      short_name: "Feedful",
+      description: "News for the curious",
+      icons,
+      display: "standalone",
+      orientation: "portrait",
+      theme_color: "#ffffff",
+    },
+    workbox: {
+      navigateFallback: "/",
+    },
+    devOptions: {
+      enabled: true,
+      type: "module",
+    },
+  },
 });

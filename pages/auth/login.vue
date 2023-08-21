@@ -124,7 +124,6 @@ async function submit() {
     navigateTo("/");
   } catch (error) {
     console.log(error);
-  } finally {
     loading.value = false;
   }
 }
