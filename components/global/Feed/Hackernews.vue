@@ -37,5 +37,6 @@ const {
   refresh,
 } = await useFetch("/api/feed/hackernews", {
   server: false,
+  lazy: true,
 });
 </script>

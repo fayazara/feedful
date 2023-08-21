@@ -40,5 +40,6 @@ const {
   refresh,
 } = await useFetch("/api/feed/dribbble", {
   server: false,
+  lazy: true,
 });
 </script>

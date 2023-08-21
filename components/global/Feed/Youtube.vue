@@ -39,5 +39,6 @@ const {
     channel: props.channelId,
   },
   server: false,
+  lazy: true,
 });
 </script>

@@ -112,5 +112,6 @@ const {
     subreddit: props.subreddit,
   },
   server: false,
+  lazy: true,
 });
 </script>

@@ -1,6 +1,6 @@
 <template>
   <VitePwaManifest />
-  <NuxtLoadingIndicator color="#94a3b8" />
+  <NuxtLoadingIndicator color="#334155" />
   <NuxtPage />
   <UNotifications />
 </template>

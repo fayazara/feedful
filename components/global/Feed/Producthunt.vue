@@ -40,5 +40,6 @@ const {
   refresh,
 } = await useFetch("/api/feed/producthunt", {
   server: false,
+  lazy: true,
 });
 </script>

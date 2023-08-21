@@ -42,5 +42,6 @@ const {
     since: props.since,
   },
   server: false,
+  lazy: true,
 });
 </script>
