@@ -114,4 +114,5 @@ const {
   server: false,
   lazy: true,
 });
+defineExpose({ refresh });
 </script>

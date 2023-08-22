@@ -11,19 +11,19 @@
       ref="feedContainer"
     >
       <FeedColumn
-        v-for="feed in feeds"
+        v-for="(feed, i) in feeds"
         :key="feed.id"
         :name="feed.name!"
         :icon="feed.icon!"
         :url="feed.url!"
         @delete="deleteFeed(feed)"
-        @refresh="
-          () => {
-            console.log('refresh');
-          }
-        "
+        @refresh="refreshFeed(i)"
       >
-        <component :is="components(feed.type)" v-bind="{ ...feed.meta }" />
+        <component
+          ref="feedcomponent"
+          :is="components(feed.type)"
+          v-bind="{ ...feed.meta }"
+        />
       </FeedColumn>
     </div>
     <div
@@ -67,6 +67,8 @@ const user = useSupabaseUser();
 const toast = useToast();
 const newFeedModal = ref(false);
 const feedContainer = ref<HTMLDivElement>();
+
+const feedcomponent = ref(null);
 
 const { data: feeds } = await useAsyncData("feeds", async () => {
   const { data } = await client
@@ -116,5 +118,11 @@ const signOut = async () => {
   const { error } = await client.auth.signOut();
   if (error) console.log(error);
   feeds.value = [];
+};
+
+const refreshFeed = (index: number) => {
+  if (feedcomponent.value) {
+    feedcomponent.value[index]?.$?.exposed?.refresh();
+  }
 };
 </script>
