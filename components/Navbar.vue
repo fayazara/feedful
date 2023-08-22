@@ -6,8 +6,8 @@
       <p class="text-xs text-gray-600 mr-2">{{ date }}</p>
       <UTooltip text="Add Feed">
         <UButton
-          icon="i-heroicons-plus-circle"
-          size="sm"
+          icon="i-lucide-plus-circle"
+          size="xs"
           :square="true"
           variant="ghost"
           color="gray"
@@ -26,7 +26,7 @@
       >
         <UButton
           icon="i-lucide-user"
-          size="sm"
+          size="xs"
           :square="true"
           variant="ghost"
           color="gray"
@@ -43,8 +43,11 @@
               </p>
             </div>
             <UAvatar
-              src="https://api.dicebear.com/6.x/notionists/svg?seed=Cali"
-              alt="user"
+              :src="
+                user?.user_metadata?.avatar_url ||
+                `https://api.dicebear.com/6.x/notionists/svg?seed=Cali`
+              "
+              :alt="user?.user_metadata?.full_name || 'Unknown User'"
             />
           </div>
         </template>
@@ -62,7 +65,7 @@
           <UButton
             to="/auth/login"
             icon="i-lucide-user"
-            size="sm"
+            size="xs"
             :square="true"
             variant="ghost"
             color="gray"
@@ -75,7 +78,7 @@
 
 <script lang="ts" setup>
 const emit = defineEmits(["signOut"]);
-const props = defineProps(["user"]);
+const user = useSupabaseUser();
 
 const date = computed(() => {
   return new Date().toLocaleDateString("en-US", {
@@ -87,7 +90,7 @@ const date = computed(() => {
 });
 
 const items = computed(() => {
-  const userLabel = props.user.email ?? "Unknown User";
+  const userLabel = user.value.email ?? "Unknown User";
   return [
     [
       {

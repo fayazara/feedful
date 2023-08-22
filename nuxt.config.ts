@@ -1,6 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-import icons from "./constants/icons.json";
-import splashScreens from "./constants/apple-pwa-links.json";
 export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
@@ -18,30 +15,5 @@ export default defineNuxtConfig({
   },
   supabase: {
     redirect: false,
-  },
-  app: {
-    head: {
-      charset: "utf-8",
-      viewport: "width=device-width, initial-scale=1, user-scalable=no",
-      link: [...splashScreens],
-    },
-  },
-  pwa: {
-    manifest: {
-      name: "Feedful",
-      short_name: "Feedful",
-      description: "News for the curious",
-      icons,
-      display: "standalone",
-      orientation: "portrait",
-      theme_color: "#ffffff",
-    },
-    workbox: {
-      navigateFallback: "/",
-    },
-    devOptions: {
-      enabled: true,
-      type: "module",
-    },
   },
 });
