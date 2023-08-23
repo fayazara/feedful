@@ -1,5 +1,11 @@
 <template>
-  <FeedHeader :name="name" :icon="icon" :url="url" @refresh="refresh" @delete="$emit('delete')"/>
+  <FeedHeader
+    :name="name"
+    :icon="icon"
+    :url="url"
+    @refresh="refresh"
+    @delete="$emit('delete')"
+  />
   <div class="flex-1 overflow-auto">
     <FeedLoading v-if="pending" />
     <div v-else class="divide-y">
@@ -8,8 +14,8 @@
         :key="id"
         class="px-3 py-4 group hover:bg-gray-50"
       >
-        <a :href="post.url" target="_blank">
-          <div v-if="post.is_image" class="flex flex-col gap-2">
+        <div v-if="post.is_image" class="flex flex-col gap-2">
+          <a :href="post.url" target="_blank">
             <div class="flex gap-x-2">
               <img
                 :src="post.thumbnail"
@@ -40,8 +46,10 @@
               :author="post.author"
               :created-at="post.created_at"
             />
-          </div>
-          <div v-else-if="post.is_video" class="flex flex-col gap-2">
+          </a>
+        </div>
+        <div v-else-if="post.is_video" class="flex flex-col gap-2">
+          <a :href="post.url" target="_blank">
             <p
               v-if="post.title"
               class="font-medium text-sm text-gray-900 break-words"
@@ -49,13 +57,15 @@
             >
               {{ post.title }}
             </p>
-            <video
-              preload="metadata"
-              :poster="post.thumbnail"
-              :src="post.video_url"
-              controls
-              class="w-full aspect-[16/9] rounded-lg ring-1 ring-gray-200"
-            />
+          </a>
+          <video
+            preload="metadata"
+            :poster="post.thumbnail"
+            :src="post.video_url"
+            controls
+            class="w-full aspect-[16/9] rounded-lg ring-1 ring-gray-200"
+          />
+          <a :href="post.url" target="_blank">
             <p class="text-xs text-gray-500">{{ post.subreddit }}</p>
 
             <p
@@ -71,8 +81,10 @@
               :author="post.author"
               :created-at="post.created_at"
             />
-          </div>
-          <div v-else class="flex flex-col gap-2">
+          </a>
+        </div>
+        <div v-else class="flex flex-col gap-2">
+          <a :href="post.url" target="_blank">
             <p class="text-xs text-gray-500">{{ post.subreddit }}</p>
             <p
               v-if="post.title"
@@ -94,8 +106,8 @@
               :author="post.author"
               :created-at="post.created_at"
             />
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
   </div>
