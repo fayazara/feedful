@@ -10,19 +10,15 @@
       class="flex-grow flex overflow-x-auto snap-x snap-mandatory bg-white"
       ref="feedContainer"
     >
-      <FeedColumn
-        v-for="(feed, i) in feeds"
-        :key="feed.id"
-        :name="feed.name!"
-        :icon="feed.icon!"
-        :url="feed.url!"
-        @delete="deleteFeed(feed)"
-        @refresh="refreshFeed(i)"
-      >
+      <FeedColumn v-for="(feed, i) in feeds" :key="feed.id">
         <component
           ref="feedcomponent"
           :is="components(feed.type)"
           v-bind="{ ...feed.meta }"
+          @delete="deleteFeed(feed)"
+          :name="feed.name!"
+          :icon="feed.icon!"
+          :url="feed.url!"
         />
       </FeedColumn>
     </div>
@@ -118,11 +114,5 @@ const signOut = async () => {
   const { error } = await client.auth.signOut();
   if (error) console.log(error);
   feeds.value = [];
-};
-
-const refreshFeed = (index: number) => {
-  if (feedcomponent.value) {
-    feedcomponent.value[index]?.$?.exposed?.refresh();
-  }
 };
 </script>
