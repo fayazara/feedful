@@ -5,8 +5,6 @@ watch(
   () => {
     if (user.value) {
       return navigateTo("/");
-    } else {
-      return navigateTo("/auth/login");
     }
   },
   { immediate: true }
