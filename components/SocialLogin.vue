@@ -8,7 +8,7 @@
         <span class="bg-white px-6 text-gray-900">or continue with</span>
       </div>
     </div>
-    <div class="grid grid-cols-2 gap-3">
+    <div class="grid grid-cols-2 gap-2">
       <UButton
         @click="login('github')"
         type="button"
