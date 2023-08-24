@@ -1,6 +1,6 @@
 import { sleep } from "@/utils";
 import * as cheerio from "cheerio";
-import { kFormatter } from "@/utils";
+import { formatNumber } from "@/utils";
 
 import fixtures from "./githubReposFixtures";
 
@@ -35,7 +35,7 @@ export default async (
           url: `https://github.com${$(element)
             .find("h2.h3.lh-condensed a")
             .attr("href")}`,
-          stars: kFormatter(
+          stars: formatNumber(
             parseInt(
               $(element)
                 .find(`a[href*="/stargazers"]`)

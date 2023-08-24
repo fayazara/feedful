@@ -4,11 +4,18 @@ export async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export function kFormatter(num: number): string {
-  if (Math.abs(num) > 999) {
+export function formatNumber(num: number): string {
+  if (Math.abs(num) >= 1e6) {
+    const million = Math.sign(num) * (Math.abs(num) / 1e6);
+    if (Math.abs(million) >= 1000) {
+      return (Math.sign(million) * (Math.abs(million) / 1000)).toFixed(1) + "M";
+    } else {
+      return million.toFixed(1) + "M";
+    }
+  } else if (Math.abs(num) >= 1000) {
     return (Math.sign(num) * (Math.abs(num) / 1000)).toFixed(1) + "k";
   } else {
-    return (Math.sign(num) * Math.abs(num)).toString();
+    return Math.sign(num) * Math.abs(num) + "";
   }
 }
 
