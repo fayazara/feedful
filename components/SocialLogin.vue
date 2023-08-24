@@ -8,36 +8,38 @@
         <span class="bg-white px-6 text-gray-900">or continue with</span>
       </div>
     </div>
-    <UButton
-      @click="login('github')"
-      type="button"
-      :ui="{ rounded: 'rounded-lg' }"
-      size="lg"
-      block
-      color="black"
-      class="transition-transform active:scale-[0.98] h-10"
-      :padded="false"
-      :disabled="loading"
-    >
-      <Spinner v-if="loading" class="h-5 w-5" />
-      <Icon v-else name="i-bi-github" class="h-5 w-5" />
-      Github
-    </UButton>
-    <UButton
-      @click="login('google')"
-      type="button"
-      :ui="{ rounded: 'rounded-lg' }"
-      size="lg"
-      block
-      color="black"
-      class="transition-transform active:scale-[0.98] h-10"
-      :padded="false"
-      :disabled="loading"
-    >
-      <Spinner v-if="loading" class="h-5 w-5" />
-      <Icon v-else name="logos:google-icon" class="h-5 w-5" />
-      Google
-    </UButton>
+    <div class="grid grid-cols-2 gap-3">
+      <UButton
+        @click="login('github')"
+        type="button"
+        :ui="{ rounded: 'rounded-lg' }"
+        size="lg"
+        block
+        color="black"
+        class="transition-transform active:scale-[0.98] h-10"
+        :padded="false"
+        :disabled="loading"
+      >
+        <Spinner v-if="loading" class="h-5 w-5" />
+        <Icon v-else name="i-bi-github" class="h-5 w-5" />
+        Github
+      </UButton>
+      <UButton
+        @click="login('google')"
+        type="button"
+        :ui="{ rounded: 'rounded-lg' }"
+        size="lg"
+        block
+        color="black"
+        class="transition-transform active:scale-[0.98] h-10"
+        :padded="false"
+        :disabled="loading"
+      >
+        <Spinner v-if="loading" class="h-5 w-5" />
+        <Icon v-else name="logos:google-icon" class="h-5 w-5" />
+        Google
+      </UButton>
+    </div>
   </div>
 </template>
 
