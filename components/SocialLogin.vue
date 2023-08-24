@@ -17,8 +17,10 @@
       color="black"
       class="transition-transform active:scale-[0.98] h-10"
       :padded="false"
+      :disabled="loading"
     >
-      <Icon name="i-bi-github" class="h-5 w-5" />
+      <Spinner v-if="loading" class="h-5 w-5" />
+      <Icon v-else name="i-bi-github" class="h-5 w-5" />
       Github
     </UButton>
     <UButton
@@ -30,20 +32,27 @@
       color="black"
       class="transition-transform active:scale-[0.98] h-10"
       :padded="false"
+      :disabled="loading"
     >
-      <Icon name="logos:google-icon" class="h-5 w-5" />
+      <Spinner v-if="loading" class="h-5 w-5" />
+      <Icon v-else name="logos:google-icon" class="h-5 w-5" />
       Google
     </UButton>
   </div>
 </template>
 
 <script lang="ts" setup>
+const loading = ref(false);
 const supabase = useSupabaseClient();
 const login = async (provider: string) => {
+  loading.value = true;
   const { error } = await supabase.auth.signInWithOAuth({
     provider: provider as any,
-    options: { redirectTo: `${useRuntimeConfig().public.baseUrl}/auth/confirm` },
+    options: {
+      redirectTo: `${useRuntimeConfig().public.baseUrl}/auth/confirm`,
+    },
   });
   if (error) console.log(error);
+  loading.value = false;
 };
 </script>
