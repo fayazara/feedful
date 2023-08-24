@@ -113,6 +113,8 @@ const deleteFeed = async (feed: Feed) => {
 const signOut = async () => {
   const { error } = await client.auth.signOut();
   if (error) console.log(error);
-  feeds.value = [];
+  else {
+    window.location.reload();
+  }
 };
 </script>

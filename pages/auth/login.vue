@@ -76,6 +76,7 @@
           </template>
         </UButton>
       </UForm>
+      <SocialLogin />
       <div class="flex gap-2 items-center justify-center mt-4 p-4 text-center">
         <p class="text-gray-500">
           or,

@@ -79,13 +79,14 @@
           </template>
         </UButton>
       </UForm>
+      <SocialLogin />
       <div class="flex gap-2 items-center justify-center mt-4 p-4 text-center">
         <p class="text-gray-500">
           or,
           <NuxtLink
             to="/auth/login"
             class="underline underline-offset-[3px] decoration-gray-300 focus:outline-none focus:text-black hover:text-black"
-            >login.</NuxtLink
+            >login</NuxtLink
           >
         </p>
       </div>
