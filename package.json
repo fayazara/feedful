@@ -15,7 +15,6 @@
     "@nuxtjs/supabase": "^1.0.2",
     "@types/cheerio": "^0.22.31",
     "@types/node": "20.5.1",
-    "@vite-pwa/nuxt": "^0.1.0",
     "@vueuse/core": "^10.3.0",
     "@vueuse/nuxt": "^10.3.0",
     "nuxt": "^3.6.5",
