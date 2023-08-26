@@ -4,6 +4,11 @@
       @openNewFeedModal="newFeedModal = true"
       :user="user"
       @signOut="signOut"
+      @changelog="changelogModal = true"
+      @account="accountModal = true"
+      @emailDigest="emailDigestModal = true"
+      @feedSettings="feedSettingsModal = true"
+      @report="reportModal = true"
     />
     <div
       v-if="feeds && feeds.length"
@@ -53,17 +58,33 @@
     >
       <NewFeedForm @close="newFeedModal = false" @save="pushNewFeed" />
     </UModal>
+    <UModal v-model="changelogModal">
+      <AppChangelog @close="changelogModal = false" />
+    </UModal>
+    <UModal v-model="reportModal">
+      <AppReportIssue @close="reportModal = false" />
+    </UModal>
+    <UModal v-model="emailDigestModal">
+      <AppEmailDigest @close="emailDigestModal = false" />
+    </UModal>
   </main>
 </template>
 
 <script lang="ts" setup>
 import { Database } from "@/types/database.types";
+
 const client = useSupabaseClient<Database>();
 const user = useSupabaseUser();
-const toast = useToast();
-const newFeedModal = ref(false);
-const feedContainer = ref<HTMLDivElement>();
 
+const toast = useToast();
+
+const newFeedModal = ref(false);
+const changelogModal = ref(false);
+const accountModal = ref(false);
+const emailDigestModal = ref(false);
+const feedSettingsModal = ref(false);
+const reportModal = ref(false);
+const feedContainer = ref<HTMLDivElement>();
 const feedcomponent = ref(null);
 
 const { data: feeds } = await useAsyncData("feeds", async () => {

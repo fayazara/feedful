@@ -77,7 +77,14 @@
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits(["signOut"]);
+const emit = defineEmits([
+  "signOut",
+  "feedSettings",
+  "emailDigest",
+  "changelog",
+  "report",
+  "account",
+]);
 const user = useSupabaseUser();
 
 const date = computed(() => {
@@ -101,24 +108,25 @@ const items = computed(() => {
     ],
     [
       {
-        label: "Profile",
-        icon: "i-lucide-user",
-      },
-      {
-        label: "Feed settings",
-        icon: "i-lucide-menu-square",
-      },
-      {
         label: "Email digest",
         icon: "i-lucide-mail",
+        click: () => {
+          emit("emailDigest");
+        },
       },
       {
         label: "What's new",
         icon: "i-lucide-sparkles",
+        click: () => {
+          emit("changelog");
+        },
       },
       {
-        label: "Report a problem",
+        label: "Feedback / Report bug",
         icon: "i-lucide-alert-triangle",
+        click: () => {
+          emit("report");
+        },
       },
     ],
     [
