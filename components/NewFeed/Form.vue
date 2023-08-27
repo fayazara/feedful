@@ -235,7 +235,7 @@ function transformData(feed: Feed) {
     return {
       ...feed,
       name: `r/${selectedRedditMeta.value.subreddit}`,
-      url: `https://reddit/com/r/${selectedRedditMeta.value.subreddit}`,
+      url: `https://reddit.com/r/${selectedRedditMeta.value.subreddit}`,
     };
   }
   return feed;
