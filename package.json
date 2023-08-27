@@ -13,6 +13,7 @@
     "@nuxt/devtools": "latest",
     "@nuxthq/ui": "^2.7.0",
     "@nuxtjs/supabase": "^1.0.2",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/cheerio": "^0.22.31",
     "@types/node": "20.5.1",
     "@vueuse/core": "^10.3.0",

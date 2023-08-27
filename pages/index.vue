@@ -47,9 +47,6 @@
       :ui="{
         padding: 'p-0',
         rounded: 'rounded-t-xl sm:rounded-xl',
-        overlay: {
-          background: 'bg-[rgba(0,8,47,.275)] saturate-50',
-        },
         transition: {
           enterFrom: 'opacity-0 translate-y-full sm:translate-y-0 sm:scale-95',
           leaveFrom: 'opacity-100 translate-y-0 sm:scale-100',

@@ -9,7 +9,7 @@
     >
       <p class="font-medium">Have a question or found a bug?</p>
       <p class="text-sm text-gray-500 mt-4">Let us know!</p>
-      <div class="grid grid-cols-3 gap-3 mt-2">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-3 gap-y-2 mt-2">
         <UButton
           icon="i-lucide-bug"
           square

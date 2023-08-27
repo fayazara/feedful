@@ -9,5 +9,10 @@ export default defineAppConfig({
         base: "text-sm block font-medium text-gray-700 dark:text-gray-200",
       },
     },
+    modal: {
+      overlay: {
+        background: "bg-[rgba(0,8,47,.275)] saturate-50",
+      },
+    },
   },
 });

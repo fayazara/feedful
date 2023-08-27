@@ -1,37 +1,30 @@
 <template>
-  <div class="relative flex gap-x-4">
-    <div
-      v-if="trail"
-      class="absolute -bottom-6 left-0 top-0 flex w-6 justify-center"
-    >
-      <div class="w-px bg-gray-200 dark:bg-gray-800" />
-    </div>
-    <div
-      className="relative flex h-6 w-6 flex-none items-center justify-center bg-white"
-    >
+  <section>
+    <h2 class="text-gray-500 leading-6 text-sm pl-8 m-0">
+      <span>{{ date }}</span>
+    </h2>
+    <div class="pt-2 pl-8 pb-16 relative">
       <div
-        className="h-1.5 w-1.5 rounded-full bg-gray-300 ring-1 ring-gray-400"
+        class="absolute bottom-0 left-0 w-px bg-slate-200"
+        :class="top ? '-top-6' : '-top-3'"
       ></div>
-    </div>
-    <div class="w-full">
-      <div class="flex items-center min-w-0 justify-between">
-        <p
-          class="py-0.5 leading-5 text-gray-800 text-sm dark:text-gray-300 font-semibold truncate"
-        >
-          {{ title }}
-        </p>
+      <div
+        class="bg-white border-slate-300 border-2 rounded-full w-[0.5625rem] h-[0.5625rem] -left-1 -top-[1.0625rem] absolute"
+      ></div>
+
+      <div
+        class="max-w-none prose-h3:mb-4 prose-h3:text-base prose-h3:leading-6 prose-sm prose prose-slate prose-a:font-semibold prose-a:text-sky-500 hover:prose-a:text-sky-600"
+      >
+        <h3>{{ title }}</h3>
+        <p>{{ description }}</p>
         <UBadge
-          variant="subtle"
-          size="xs"
           :label="category"
+          variant="subtle"
           :color="category === 'Bug' ? 'red' : 'primary'"
         />
       </div>
-      <p class="text-gray-600 dark:text-gray-400 mt-2 text-xs">
-        {{ description }}
-      </p>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
@@ -40,5 +33,7 @@ const props = defineProps({
   description: String,
   trail: Boolean,
   category: String,
+  top: Boolean,
+  date: String,
 });
 </script>

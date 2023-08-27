@@ -1,16 +1,15 @@
 <template>
-  <div class="h-64 relative overflow-hidden">
-    <div class="text-center pt-12">
-      <h2 class="text-2xl font-semibold text-gray-700">
-        Email Digests, Coming soon
-      </h2>
+  <div class="h-72 relative overflow-hidden px-4 sm:px-0">
+    <div class="text-center pt-12 max-w-md mx-auto">
+      <h2 class="text-2xl font-semibold text-gray-700">Email Digests</h2>
       <p class="text-gray-700 text-sm mt-2">
-        Get your feeds in your inbox every morning like a newspaper.
+        Get your feeds in your inbox every morning like a newspaper. This
+        feature is a work in progress and will be available soon.
       </p>
     </div>
-    <Icon
-      name="fluent-emoji:open-mailbox-with-raised-flag"
-      class="h-28 w-28 absolute -bottom-2 left-1/2 -translate-x-1/2"
+    <img
+      src="/mailbox.webp"
+      class="h-24 w-auto absolute -bottom-0 left-1/2 -translate-x-1/2"
     />
   </div>
 </template>
