@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.1.119",
+    "@vercel/analytics": "^1.0.2",
     "cheerio": "^1.0.0-rc.12",
     "fast-xml-parser": "^4.2.7",
     "h3-zod": "^0.5.1",
