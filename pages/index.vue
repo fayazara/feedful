@@ -32,14 +32,24 @@
       class="flex-grow flex items-center justify-center flex-col gap-3"
     >
       <EmptyState />
-      <h2 class="text-lg">You have not added feeds yet</h2>
+      <h2 class="text-lg">
+        {{
+          !user
+            ? "Please login to add some columns"
+            : "You have not added feeds yet"
+        }}
+      </h2>
       <UButton
+        v-if="user"
         @click="newFeedModal = true"
         variant="solid"
         color="gray"
         size="sm"
       >
         Add a feed now
+      </UButton>
+      <UButton v-else to="/auth/login" variant="solid" color="gray" size="sm">
+        Login
       </UButton>
     </div>
     <UModal
