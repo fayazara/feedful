@@ -32,13 +32,11 @@
         label="Search youtube channels"
         name="channel"
         :error="error"
-        help="We're getting rate limited by youtube, due a huge amount of requests. I will be working on a better solution. Please check back later."
       >
         <UInput
           v-model="searchQuery"
           icon="i-heroicons-magnifying-glass-20-solid"
           :ui="{ icon: { trailing: { pointer: '' } } }"
-          :disabled="true"
         />
       </UFormGroup>
       <div
