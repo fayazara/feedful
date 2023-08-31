@@ -34,6 +34,13 @@
 <script lang="ts" setup>
 const changelog = [
   {
+    title: "v0.9.1 - Re enabled youtube",
+    description:
+      "Re enabled adding youtube channels as feeds.",
+    category: "Bug",
+    date: "Aug 31, 2023",
+  },
+  {
     title: "v0.9.0 - UI Polishing and Final Beta Updates",
     description:
       "Made several UI improvements for a smoother and more visually appealing user experience. Scroll animation to the end when a new feed is added. This concludes the beta phase.",
