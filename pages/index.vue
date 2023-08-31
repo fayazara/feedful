@@ -11,7 +11,14 @@
       @report="reportModal = true"
     />
     <div
-      v-if="feeds && feeds.length"
+      v-if="pending"
+      class="flex-grow flex items-center justify-center flex-col gap-3 text-gray-700 animate-pop-in"
+    >
+      <Spinner class="h-5 w-5 animate-1" />
+      <div class="animate-2">Fetching your feeds...</div>
+    </div>
+    <div
+      v-else-if="feeds && feeds.length"
       class="flex-grow flex overflow-x-auto snap-x snap-mandatory bg-white"
       ref="feedContainer"
     >
@@ -94,14 +101,21 @@ const reportModal = ref(false);
 const feedContainer = ref<HTMLDivElement>();
 const feedcomponent = ref(null);
 
-const { data: feeds } = await useAsyncData("feeds", async () => {
-  const { data } = await client
-    .from("feeds")
-    .select("*")
-    .eq("user_id", user.value.id)
-    .order("created_at", { ascending: true });
-  return data as Feed[];
-});
+const { data: feeds, pending } = await useAsyncData(
+  "feeds",
+  async () => {
+    const { data } = await client
+      .from("feeds")
+      .select("*")
+      .eq("user_id", user.value.id)
+      .order("created_at", { ascending: true });
+    return data as Feed[];
+  },
+  {
+    lazy: true,
+    server: false,
+  }
+);
 
 const components = (type: string) => {
   const feedMap: Record<string, string> = {
