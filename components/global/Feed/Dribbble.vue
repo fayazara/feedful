@@ -1,5 +1,11 @@
 <template>
-  <FeedHeader :name="name" :icon="icon" :url="url" @refresh="refresh" @delete="$emit('delete')"/>
+  <FeedHeader
+    :name="name"
+    :icon="icon"
+    :url="url"
+    @refresh="refresh"
+    @delete="$emit('delete')"
+  />
   <div class="flex-1 overflow-auto">
     <FeedLoading v-if="pending" />
     <div v-else>
@@ -36,7 +42,7 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{
+defineProps<{
   name: string;
   url: string;
   icon: string;
@@ -45,7 +51,6 @@ const props = defineProps<{
 const {
   data: posts,
   pending,
-  error,
   refresh,
 } = await useFetch("/api/feed/dribbble", {
   server: false,

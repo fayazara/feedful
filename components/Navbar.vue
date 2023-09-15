@@ -18,7 +18,7 @@
         v-if="user"
         :items="items"
         :ui="{
-          item: { disabled: 'cursor-text select-text' },
+          item: { disabled: 'opacity-0' },
           container: 'z-50',
           width: 'w-56',
         }"

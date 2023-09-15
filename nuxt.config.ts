@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxthq/ui", "nuxt-icon", "@nuxtjs/supabase", "@vueuse/nuxt"],
+  modules: ["@nuxt/ui", "nuxt-icon", "@nuxtjs/supabase", "@vueuse/nuxt"],
   ui: {
     icons: ["heroicons", "logos", "lucide"],
   },
@@ -8,7 +8,11 @@ export default defineNuxtConfig({
     preference: "light",
   },
   supabase: {
-    redirect: false,
+    redirectOptions: {
+      login: "/",
+      callback: "/confirm",
+      exclude: ["/auth/login", "/auth/register"],
+    },
   },
   runtimeConfig: {
     public: {
