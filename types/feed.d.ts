@@ -11,6 +11,10 @@ declare interface RedditFeedMeta {
   subreddit: string;
 }
 
+declare interface RssFeedMeta {
+  feedUrl: string;
+}
+
 declare interface Feed {
   id?: number;
   name: string;
@@ -18,7 +22,7 @@ declare interface Feed {
   icon?: string;
   url?: string;
   description?: string;
-  meta?: GithubFeedMeta | YoutubeFeedMeta | RssFeedMeta;
+  meta?: GithubFeedMeta | YoutubeFeedMeta | RssFeedMeta | RedditFeedMeta;
   user_id?: string;
   created_at?: string;
 }
