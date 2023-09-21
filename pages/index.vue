@@ -15,8 +15,9 @@
       class="flex-grow flex overflow-x-auto snap-x snap-mandatory bg-white"
       ref="feedContainer"
     >
-      <FeedColumn v-for="(feed, i) in feeds" :key="feed.id">
+      <FeedColumn v-for="feed in feeds" :key="feed.id">
         <component
+          :key="feed.id"
           ref="feedcomponent"
           :is="components(feed.type)"
           v-bind="{ ...feed.meta }"

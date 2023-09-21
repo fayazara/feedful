@@ -9,25 +9,27 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@iconify-json/logos": "^1.1.34",
-    "@nuxt/devtools": "latest",
-    "@nuxthq/ui": "^2.7.0",
-    "@nuxtjs/supabase": "^1.0.2",
-    "@tailwindcss/typography": "^0.5.9",
-    "@types/cheerio": "^0.22.31",
-    "@types/node": "20.5.1",
-    "@vueuse/core": "^10.3.0",
-    "@vueuse/nuxt": "^10.3.0",
-    "nuxt": "^3.6.5",
-    "nuxt-icon": "^0.5.0"
+    "@iconify-json/logos": "^1.1.37",
+    "@nuxt/devtools": "^0.8.4",
+    "@nuxtjs/supabase": "^1.1.0",
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/cheerio": "^0.22.32",
+    "@types/node": "^20.6.3",
+    "@vueuse/core": "^10.4.1",
+    "@vueuse/nuxt": "^10.4.1",
+    "nuxt": "^3.7.3",
+    "nuxt-icon": "^0.5.0",
+    "yarn-upgrade-all": "^0.7.2"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.1.119",
+    "@iconify-json/lucide": "^1.1.128",
+    "@nuxthq/ui": "^2.7.0",
     "@vercel/analytics": "^1.0.2",
+    "@vite-pwa/nuxt": "^0.1.1",
     "cheerio": "^1.0.0-rc.12",
-    "fast-xml-parser": "^4.2.7",
+    "fast-xml-parser": "^4.3.0",
     "h3-zod": "^0.5.1",
-    "resend": "^1.0.0",
-    "zod": "3.22.2"
+    "resend": "^1.1.0",
+    "zod": "^3.22.2"
   }
 }

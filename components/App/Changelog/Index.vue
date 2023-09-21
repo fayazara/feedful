@@ -34,6 +34,13 @@
 <script lang="ts" setup>
 const changelog = [
   {
+    title: "v0.9.2 - Fix the feeds issue",
+    description:
+      "Fixed the weird issues feeds wont load",
+    category: "Bug",
+    date: "Aug 31, 2023",
+  },
+  {
     title: "v0.9.1 - Re enabled youtube",
     description:
       "Re enabled adding youtube channels as feeds.",
