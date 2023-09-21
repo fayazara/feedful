@@ -25,17 +25,9 @@ const props = defineProps<{
   url: string;
   icon: string;
 }>();
-const emit = defineEmits(["delete", "refresh", "edit"]);
+const emit = defineEmits(["delete", "refresh"]);
 const actions = [
   [
-    {
-      label: "Edit",
-      icon: "i-heroicons-pencil-square-20-solid",
-      disabled: true,
-      click: () => {
-        emit("edit");
-      },
-    },
     {
       label: "Refresh",
       icon: "i-lucide-rotate-cw",

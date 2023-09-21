@@ -1,5 +1,11 @@
 <template>
-  <FeedHeader :name="name" :icon="icon" :url="url" @refresh="refresh" @delete="$emit('delete')"/>
+  <FeedHeader
+    :name="name"
+    :icon="icon"
+    :url="url"
+    @refresh="refresh"
+    @delete="$emit('delete')"
+  />
   <div class="flex-1 overflow-auto">
     <FeedLoading v-if="pending" />
     <div v-else>
