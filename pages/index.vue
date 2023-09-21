@@ -18,7 +18,6 @@
       <FeedColumn v-for="feed in feeds" :key="feed.id">
         <component
           :key="feed.id"
-          ref="feedcomponent"
           :is="components(feed.type)"
           v-bind="{ ...feed.meta }"
           @delete="deleteFeed(feed)"
@@ -93,7 +92,6 @@ const emailDigestModal = ref(false);
 const feedSettingsModal = ref(false);
 const reportModal = ref(false);
 const feedContainer = ref<HTMLDivElement>();
-const feedcomponent = ref(null);
 
 const { data: feeds } = await useAsyncData("feeds", async () => {
   const { data } = await client
@@ -112,6 +110,7 @@ const components = (type: string) => {
     youtube: "FeedYoutube",
     dribbble: "FeedDribbble",
     reddit: "FeedReddit",
+    rss: "FeedRss",
   };
   return feedMap[type] as string;
 };

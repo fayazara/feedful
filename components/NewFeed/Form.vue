@@ -54,6 +54,11 @@
               :error="errors.subreddit"
               v-model="selectedRedditMeta.subreddit"
             />
+            <NewFeedRssFeedMeta
+              v-else-if="feed.type === 'rss' && selectedFeed.meta"
+              :error="errors.feedUrl"
+              v-model="selectedRssFeedMeta.feedUrl"
+            />
           </template>
         </NewFeedListItem>
       </li>
@@ -120,11 +125,16 @@ const selectedRedditMeta = computed(
   () => selectedFeed.value.meta as RedditFeedMeta
 );
 
+const selectedRssFeedMeta = computed(
+  () => selectedFeed.value.meta as RssFeedMeta
+);
+
 const errors = ref({
   githubLanguage: "",
   githubSince: "",
   youtubeChannel: "",
   subreddit: "",
+  feedUrl: "",
 });
 
 function selectFeed(type: string) {
@@ -164,6 +174,17 @@ function selectFeed(type: string) {
         },
       };
       break;
+    case "rss":
+      selectedFeed.value = {
+        name: "",
+        type: "rss",
+        url: "",
+        icon: feed?.icon || "",
+        meta: {
+          feedUrl: "",
+        },
+      };
+      break;
     default:
       selectedFeed.value = {
         name: feed?.name || "",
@@ -180,6 +201,12 @@ function resetErrors() {
   errors.value.githubSince = "";
   errors.value.youtubeChannel = "";
   errors.value.subreddit = "";
+  errors.value.feedUrl = "";
+}
+
+function isValidUrl(url: string): boolean {
+  const urlRegex: RegExp = /^(https):\/\/[^ "]+\.[^ "]+$/;
+  return urlRegex.test(url);
 }
 
 function validateForm() {
@@ -208,10 +235,22 @@ function validateForm() {
     return false;
   }
 
+  if (type === "rss") {
+    if (!meta.feedUrl) {
+      errors.value.feedUrl = "Please enter an RSS feed URL";
+      return false;
+    }
+
+    if (!isValidUrl(meta.feedUrl)) {
+      errors.value.feedUrl = "Please enter a valid RSS feed URL";
+      return false;
+    }
+  }
+
   return true;
 }
 
-function transformData(feed: Feed) {
+async function transformData(feed: Feed) {
   if (feed.type === "github") {
     const name = programmingLanguages.find(
       (lang) => lang.language === selectedGithubMeta.value.language
@@ -238,7 +277,26 @@ function transformData(feed: Feed) {
       url: `https://reddit.com/r/${selectedRedditMeta.value.subreddit}`,
     };
   }
+  if (feed.type === "rss") {
+    const { title, link } = await fetchFeedDetails(
+      selectedRssFeedMeta.value.feedUrl
+    );
+    return {
+      ...feed,
+      icon: "ph:rss-simple-bold",
+      name: title || selectedRssFeedMeta.value.feedUrl,
+      url: link || selectedRssFeedMeta.value.feedUrl,
+    };
+  }
   return feed;
+}
+
+async function fetchFeedDetails(url: string) {
+  const data = await $fetch(`/api/feed/rss?feedUrl=${url}`);
+  return {
+    title: data.title,
+    link: data.link,
+  };
 }
 
 function selectYoutubeChannel(channel: YoutubeChannel) {
@@ -252,7 +310,9 @@ async function submit() {
   if (!validateForm()) return;
   try {
     loading.value = true;
-    const feed = transformData(JSON.parse(JSON.stringify(selectedFeed.value)));
+    const feed = await transformData(
+      JSON.parse(JSON.stringify(selectedFeed.value))
+    );
     if (!user.value) {
       return toast.add({
         title: "Error",

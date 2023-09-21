@@ -47,19 +47,19 @@ export default [
     url: "https://dribbble.com/",
   },
   {
+    type: "rss",
+    name: "Rss Feed (Beta)",
+    icon: "ph:rss-simple-bold",
+    disabled: false,
+    description: "Subscribe via RSS feed",
+  },
+  {
     type: "google-news",
     name: "Google news",
     icon: "GoogleNewsLogo",
     disabled: true,
     description: "Top news from Google news for your country",
     url: "https://news.google.com/",
-  },
-  {
-    type: "rss",
-    name: "Publication or Blog",
-    icon: "ph:rss-simple-bold",
-    disabled: true,
-    description: "Subscribe via RSS feed",
   },
   {
     type: "substack",
