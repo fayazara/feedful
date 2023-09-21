@@ -1,14 +1,6 @@
-import icons from "./constants/icons.json";
-import splashScreens from "./constants/apple-pwa-links.json";
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: [
-    "nuxt-icon",
-    "@nuxtjs/supabase",
-    "@vueuse/nuxt",
-    "@nuxthq/ui",
-    "@vite-pwa/nuxt",
-  ],
+  modules: ["nuxt-icon", "@nuxtjs/supabase", "@vueuse/nuxt", "@nuxthq/ui"],
   ui: {
     icons: ["heroicons", "logos", "lucide"],
   },
@@ -25,8 +17,6 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      viewport: "width=device-width, initial-scale=1, user-scalable=no",
-      link: [...splashScreens],
       script: [
         {
           src: "https://analytics.umami.is/script.js",
@@ -34,25 +24,6 @@ export default defineNuxtConfig({
           async: true,
         },
       ],
-    },
-  },
-  pwa: {
-    manifest: {
-      name: "Feedful",
-      short_name: "Feedful",
-      description: "News for the curious",
-      icons,
-      display: "standalone",
-      orientation: "portrait",
-      theme_color: "#ffffff",
-    },
-    workbox: {
-      navigateFallback: "/",
-    },
-    devOptions: {
-      enabled: true,
-
-      type: "module",
     },
   },
 });

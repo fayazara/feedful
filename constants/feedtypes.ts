@@ -48,7 +48,7 @@ export default [
   },
   {
     type: "rss",
-    name: "Rss Feed (Beta)",
+    name: "Publication or Blog (Beta)",
     icon: "ph:rss-simple-bold",
     disabled: false,
     description: "Subscribe via RSS feed",

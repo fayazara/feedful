@@ -8,7 +8,6 @@ export default async function getRssFeed(feedUrl: string): Promise<[]> {
       console.error("Invalid feed structure:", feed);
       return [];
     }
-    console.log(feed.link)
     return {
       title: feed.title,
       icon: feed.icon,

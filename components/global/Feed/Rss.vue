@@ -2,6 +2,7 @@
   <FeedHeader
     :name="name"
     :icon="icon"
+    :image="`https://logo.clearbit.com/${url}`"
     :url="url"
     @refresh="refresh"
     @delete="$emit('delete')"
@@ -15,11 +16,11 @@
         class="px-3 py-4 group hover:bg-gray-50"
       >
         <a :href="post.link" target="_blank">
-          <p class="font-medium text-base text-gray-900 break-words mb-2">
+          <p class="font-semibold text-base text-gray-900 break-words mb-2">
             {{ post.title }}
           </p>
           <div
-            class="prose-sm prose-img:rounded-lg prose-img:ring-1 prose-img:ring-gray-200 line-clamp-6"
+            class="prose-sm prose-img:rounded-lg prose-img:ring-1 prose-img:ring-gray-200 line-clamp-6 prose-p:text-gray-600"
             v-html="post.content || post.description"
           ></div>
         </a>
@@ -38,7 +39,6 @@ const props = defineProps<{
 const {
   data: feed,
   pending,
-  error,
   refresh,
 } = await useFetch("/api/feed/rss", {
   params: {
