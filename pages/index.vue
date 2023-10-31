@@ -82,7 +82,6 @@ import { Database } from "@/types/database.types";
 
 const client = useSupabaseClient<Database>();
 const user = useSupabaseUser();
-
 const toast = useToast();
 
 const newFeedModal = ref(false);
